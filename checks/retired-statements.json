@@ -1,0 +1,10 @@
+{
+  "nagura_interval": {
+    "reason": "未形式化；主证明已由伯特兰路线替代，不再使用 6/5 区间定理。",
+    "archive": "checks/original-statements.json"
+  },
+  "nagura_nat": {
+    "reason": "依赖未形式化的 nagura_interval；主证明已由伯特兰路线替代。",
+    "archive": "checks/original-statements.json"
+  }
+}

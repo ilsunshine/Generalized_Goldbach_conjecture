@@ -1,0 +1,726 @@
+--- a/HexPrimality/Cert.lean
++++ b/HexPrimality/Cert.lean
+@@ -59,7 +59,7 @@
+   | pock (n : Nat) (factors : List (Nat × Nat × PrimeCert))
+   /-- The cube-root Brillhart-Lehmer-Selfridge variant, with the cofactor
+   decomposition `R = 2 F s + r` and the integer-square-root witness `w` for
+-  the discriminant test (`Nat.sqrt` is well-founded recursion and does not
++  the discriminant test (`HexArith.Nat.floorSqrt` is well-founded recursion and does not
+   kernel-reduce, so the checker verifies `w` instead of computing a root). -/
+   | pock3 (n r s w : Nat) (factors : List (Nat × Nat × PrimeCert))
+   /-- Cube-root Pocklington with divisors `lF+1` excluded for `1 ≤ l < m`. -/
+@@ -125,12 +125,12 @@
+         exact Nat.le_mul_of_pos_right _ (Nat.pow_pos hqpos)
+       simp only [boundedPowMul.native, ha, hq, ite_false]
+       by_cases hb : acc ≤ bound / q
+-      · rw [ite_eq_left hb, ih, hmul]
++      · rw [if_pos hb, ih, hmul]
+         have hab : acc * q ≤ bound := (Nat.le_div_iff_mul_le hqpos).mp hb
+         by_cases he : e = 0
+         · subst e; simp [hab]
+         · simp [he]
+-      · rw [ite_eq_right hb]
++      · rw [if_neg hb]
+         have hn : ¬ acc * q ^ (e + 1) ≤ bound := by
+           intro h
+           exact hb ((Nat.le_div_iff_mul_le hqpos).mpr (Nat.le_trans hle h))
+@@ -468,22 +468,22 @@
+       intro acc r h
+       unfold boundedPowMul.native at h
+       by_cases ha : acc = 0
+-      · rw [ite_eq_left ha] at h
++      · rw [if_pos ha] at h
+         injection h with h
+         subst h
+         simp [ha]
+-      · rw [ite_eq_right ha] at h
++      · rw [if_neg ha] at h
+         by_cases hq : q = 0
+-        · rw [ite_eq_left hq] at h
++        · rw [if_pos hq] at h
+           injection h with h
+           subst h
+           simp [hq]
+-        · rw [ite_eq_right hq] at h
++        · rw [if_neg hq] at h
+           by_cases hb : acc ≤ bound / q
+-          · rw [ite_eq_left hb] at h
++          · rw [if_pos hb] at h
+             rw [ih (acc * q) r h, Nat.pow_succ, Nat.mul_assoc,
+               Nat.mul_comm q (q ^ e)]
+-          · rw [ite_eq_right hb] at h
++          · rw [if_neg hb] at h
+             cases h
+ 
+ /-- A successful bounded multiplication preserves the accumulator bound. The
+@@ -500,21 +500,21 @@
+   | succ e ih =>
+       unfold boundedPowMul.native at h
+       by_cases ha : acc = 0
+-      · rw [ite_eq_left ha] at h
++      · rw [if_pos ha] at h
+         injection h with h
+         subst h
+         exact Nat.zero_le _
+-      · rw [ite_eq_right ha] at h
++      · rw [if_neg ha] at h
+         by_cases hq : q = 0
+-        · rw [ite_eq_left hq] at h
++        · rw [if_pos hq] at h
+           injection h with h
+           subst h
+           exact Nat.zero_le _
+-        · rw [ite_eq_right hq] at h
++        · rw [if_neg hq] at h
+           by_cases hb : acc ≤ bound / q
+-          · rw [ite_eq_left hb] at h
++          · rw [if_pos hb] at h
+             exact ih ((Nat.le_div_iff_mul_le (Nat.pos_of_ne_zero hq)).mp hb) h
+-          · rw [ite_eq_right hb] at h
++          · rw [if_neg hb] at h
+             cases h
+ 
+ /-- A successful certificate product is bounded when its initial accumulator
+--- a/HexPrimality/Cert3.lean
++++ b/HexPrimality/Cert3.lean
+@@ -31,7 +31,7 @@
+ 
+ /-- A number strictly between consecutive squares is not a square: the
+ witness form of the discriminant test, which the checker verifies with two
+-multiplications instead of a (non-kernel-reducible) `Nat.sqrt` call. -/
++multiplications instead of a (non-kernel-reducible) `HexArith.Nat.floorSqrt` call. -/
+ theorem not_square_of_sqrt_witness {w D : Nat} (h1 : w * w < D)
+     (h2 : D < (w + 1) * (w + 1)) : ∀ t, t * t ≠ D := by
+   intro t ht
+--- a/HexPrimality/Construction.lean
++++ b/HexPrimality/Construction.lean
+@@ -47,7 +47,7 @@
+   let b := twoF + r
+   if b * b + 8 ≤ 8 * s then 0
+   else Id.run do
+-    let sq := Nat.sqrt (b * b + 8 - 8 * s)
++    let sq := HexArith.Nat.floorSqrt (b * b + 8 - 8 * s)
+     let cand := (b - sq) / 2
+     for m in [max 1 (cand - 3) : cand + 4] do
+       if 2 * s + m * m < b * m + 2 then return m
+@@ -165,7 +165,7 @@
+   let R := (n - 1) / F
+   let r := R % (2 * F)
+   let s := R / (2 * F)
+-  (r, s, (r * r - 8 * s).sqrt)
++  (r, s, HexArith.Nat.floorSqrt (r * r - 8 * s))
+ 
+ /-- Cheap size and discriminant screening before any recursive certification.
+ The public checker validates these computations again on the final literal. -/
+--- a/HexPrimality/Elab.lean
++++ b/HexPrimality/Elab.lean
+@@ -397,7 +397,7 @@
+ independent of namespace openings and display settings. -/
+ meta def certificateSyntax (cert : Hex.Nat.PrimeCert) : MetaM Term :=
+   withOptions (fun _ =>
+-    Lean.Std.Format.format.width.set (pp.fullNames.set {} true) 100) do
++    Lean.Options.set (pp.fullNames.set {} true) `format.width (100 : Nat)) do
+     PrettyPrinter.delab (reifyPrimeCert cert)
+ 
+ /-- The complete finite construction resource description used in diagnostics. -/
+@@ -549,7 +549,7 @@
+     goal.assign proof
+     Tactic.replaceMainGoal []
+     withOptions (fun _ =>
+-        Lean.Std.Format.format.width.set (pp.fullNames.set {} true) 100) do
++        Lean.Options.set (pp.fullNames.set {} true) `format.width (100 : Nat)) do
+       Meta.Tactic.TryThis.addSuggestion stx replacement
+ 
+ /-- Core certificate-literal suggestion handler. -/
+--- a/HexPrimality/MillerRabin.lean
++++ b/HexPrimality/MillerRabin.lean
+@@ -60,7 +60,7 @@
+       intro m hm hlt
+       unfold oddSplitAux
+       by_cases hcase : m % 2 = 0 ∧ m ≠ 0
+-      · rw [ite_eq_left hcase]
++      · rw [if_pos hcase]
+         have hm2 : m / 2 ≠ 0 := by omega
+         have hp2 : (2 : Nat) ^ (fuel + 1) = 2 ^ fuel + 2 ^ fuel := by
+           rw [Nat.pow_succ]; omega
+@@ -73,7 +73,7 @@
+               rw [Nat.mul_right_comm]
+           _ = m / 2 * 2 := by rw [hprod]
+           _ = m := by omega
+-      · rw [ite_eq_right hcase]
++      · rw [if_neg hcase]
+         refine ⟨by simp, ?_⟩
+         simp only []
+         omega
+@@ -137,8 +137,8 @@
+       intro x hxn hx1 hpow
+       unfold mrWitnessLoop
+       by_cases hxe : x = n - 1
+-      · rw [ite_eq_left hxe]
+-      · rw [ite_eq_right hxe]
++      · rw [if_pos hxe]
++      · rw [if_neg hxe]
+         have h1n : 1 % n = 1 := Nat.mod_eq_of_lt (by omega)
+         have hy1 : x * x % n ≠ 1 := by
+           intro hy
+@@ -159,8 +159,8 @@
+     mrStrongTestCore n s (HexArith.powMod a d n) = true := by
+   unfold mrStrongTestCore
+   by_cases hx : HexArith.powMod a d n = 1 ∨ HexArith.powMod a d n = n - 1
+-  · rw [ite_eq_left hx]
+-  · rw [ite_eq_right hx]
++  · rw [if_pos hx]
++  · rw [if_neg hx]
+     have hnpos : 0 < n := by omega
+     have hxeq : HexArith.powMod a d n = a ^ d % n :=
+       HexArith.powMod_eq a d n hnpos
+@@ -200,24 +200,24 @@
+     millerRabin n a = true := by
+   have h2 := hp.two_le
+   unfold millerRabin
+-  rw [ite_eq_right (by omega : ¬ n < 2)]
++  rw [if_neg (by omega : ¬ n < 2)]
+   by_cases hn2 : n = 2
+-  · rw [ite_eq_left hn2]
+-  rw [ite_eq_right hn2]
++  · rw [if_pos hn2]
++  rw [if_neg hn2]
+   have hodd : n % 2 = 1 := by
+     rcases Nat.mod_two_eq_zero_or_one n with he | ho
+     · exfalso
+       rcases hp.2 2 (Nat.dvd_of_mod_eq_zero he) with h | h <;> omega
+     · exact ho
+-  rw [ite_eq_right (by omega : ¬ n % 2 = 0)]
++  rw [if_neg (by omega : ¬ n % 2 = 0)]
+   by_cases ha0 : a % n = 0
+-  · rw [ite_eq_left ha0]
+-  rw [ite_eq_right ha0]
++  · rw [if_pos ha0]
++  rw [if_neg ha0]
+   have hgcd : Nat.gcd a n = 1 := by
+     rcases hp.2 (Nat.gcd a n) (Nat.gcd_dvd_right a n) with h | h
+     · exact h
+     · exact absurd (Nat.mod_eq_zero_of_dvd (h ▸ Nat.gcd_dvd_left a n)) ha0
+-  rw [ite_eq_right (by omega : ¬ 1 < Nat.gcd a n)]
++  rw [if_neg (by omega : ¬ 1 < Nat.gcd a n)]
+   have h2n : 2 < n := by omega
+   obtain ⟨hsplit, hd⟩ := oddSplit_spec (n - 1) (by omega)
+   have hs : 0 < (oddSplit (n - 1)).1 := by
+--- a/HexPrimality/Order.lean
++++ b/HexPrimality/Order.lean
+@@ -54,9 +54,9 @@
+       intro k r hr h
+       unfold orderOfAux at h ⊢
+       by_cases hk : r = 1 % n
+-      · rw [ite_eq_left hk] at h ⊢
++      · rw [if_pos hk] at h ⊢
+         exact ⟨Nat.le_refl _, hr ▸ hk, fun j hkj hjk => by omega⟩
+-      · rw [ite_eq_right hk] at h ⊢
++      · rw [if_neg hk] at h ⊢
+         have hr' : r * (a % n) % n = a ^ (k + 1) % n := by
+           rw [hr, ← Nat.mul_mod, ← Nat.pow_succ]
+         obtain ⟨hle, hpow, hmin⟩ := ih (k + 1) _ hr' h
+@@ -79,9 +79,9 @@
+       intro k r hr hk j hkj hjb hj
+       unfold orderOfAux
+       by_cases hcase : r = 1 % n
+-      · rw [ite_eq_left hcase]
++      · rw [if_pos hcase]
+         omega
+-      · rw [ite_eq_right hcase]
++      · rw [if_neg hcase]
+         have hne : j ≠ k := fun h => hcase (hr.trans (h ▸ hj))
+         have hr' : r * (a % n) % n = a ^ (k + 1) % n := by
+           rw [hr, ← Nat.mul_mod, ← Nat.pow_succ]
+@@ -142,14 +142,14 @@
+ private theorem orderOf_eq_aux {a n : Nat} (h1 : 1 < n) (hcop : Nat.Coprime a n) :
+     orderOf a n = orderOfAux (a % n) n n 1 (a % n) := by
+   unfold orderOf
+-  rw [ite_eq_left ⟨h1, hcop⟩]
++  rw [if_pos ⟨h1, hcop⟩]
+ 
+ /-- A positive order certifies a nontrivial modulus. -/
+ theorem one_lt_of_orderOf_pos {a n : Nat} (h : 0 < orderOf a n) : 1 < n := by
+   by_cases hg : 1 < n ∧ Nat.Coprime a n
+   · exact hg.1
+   · unfold orderOf at h
+-    rw [ite_eq_right hg] at h
++    rw [if_neg hg] at h
+     omega
+ 
+ /-- A positive order certifies coprimality. -/
+@@ -158,7 +158,7 @@
+   by_cases hg : 1 < n ∧ Nat.Coprime a n
+   · exact hg.2
+   · unfold orderOf at h
+-    rw [ite_eq_right hg] at h
++    rw [if_neg hg] at h
+     omega
+ 
+ /-- A positive order is an exponent sending `a` to `1` modulo `n`. -/
+--- a/HexPrimality/PMinusOne.lean
++++ b/HexPrimality/PMinusOne.lean
+@@ -11,6 +11,7 @@
+ public import HexPrimality.Order
+ public import HexArith.Montgomery.Context
+ public import HexBasic.Rand
++public import Mathlib.Algebra.BigOperators.Group.List.Defs
+ 
+ public section
+ 
+@@ -291,7 +292,7 @@
+   | nil => simp [raiseSmooth]
+   | cons q qs ih =>
+     have hq' := hq q (by simp)
+-    simp only [raiseSmooth, ite_eq_left hq', HexArith.powModNat_eq _ _ _ hn]
++    simp only [raiseSmooth, if_pos hq', HexArith.powModNat_eq _ _ _ hn]
+     rw [← Nat.pow_mod, ih (by intro q h; exact hq q (by simp [h]))]
+     simp [Nat.pow_mul, List.prod_cons, List.map_cons]
+ 
+@@ -301,7 +302,7 @@
+     4 ≤ n ∧ 1 < a ∧ a < n ∧ Nat.Coprime a n ∧
+       x = a ^ exponent B₁ % n ∧ Nat.gcd ((x + n - 1) % n) n = 1 := by
+   unfold start startCore at h
+-  simp only [Id.run, pure] at h
++  simp only [Id.run, pure, bind] at h
+   split at h
+   · cases h
+   · rename_i hv
+@@ -804,7 +805,7 @@
+   | nil => simp [recover, recoverCore, whole]
+   | cons qt ts ih =>
+     by_cases hp : 1 < Nat.gcd qt.2 n ∧ Nat.gcd qt.2 n < n
+-    · simp only [recover, recoverCore, checkGcd_result, ite_eq_left hp]
++    · simp only [recover, recoverCore, checkGcd_result, if_pos hp]
+       constructor
+       · intro _; exact ⟨qt, by simp, hp⟩
+       · intro _; exact ⟨_, rfl⟩
+--- a/HexPrimality/Search.lean
++++ b/HexPrimality/Search.lean
+@@ -170,9 +170,9 @@
+ `n^(1/4)` cycle length for small `n`, capped so one restart is bounded
+ wall-clock at every input size. Beyond the cap the honest outcome is a clean
+ `exhausted`, not an inner loop whose budget outlives the caller. Runtime only,
+-so `Nat.sqrt` is fine here. -/
++so `HexArith.Nat.floorSqrt` is fine here. -/
+ private def rhoInnerFuel (n : Nat) : Nat :=
+-  min (16 * (Nat.sqrt (Nat.sqrt n) + 2)) rhoInnerFuelCap
++  min (16 * (HexArith.Nat.floorSqrt (HexArith.Nat.floorSqrt n) + 2)) rhoInnerFuelCap
+ 
+ /-- One accepted restart draw together with its advanced random state. -/
+ private structure RhoDraw where
+@@ -376,16 +376,16 @@
+     1 < success.factor ∧ success.factor < n ∧ success.factor ∣ n := by
+   unfold Internal.rhoFactorCountedWith? at h
+   by_cases h4 : n < 4
+-  · rw [ite_eq_left h4] at h
++  · rw [if_pos h4] at h
+     cases h
+-  · rw [ite_eq_right h4] at h
++  · rw [if_neg h4] at h
+     by_cases heven : n % 2 = 0
+-    · rw [ite_eq_left heven] at h
++    · rw [if_pos heven] at h
+       injection h with h
+       cases h
+       change 1 < 2 ∧ 2 < n ∧ 2 ∣ n
+       exact ⟨by omega, by omega, Nat.dvd_of_mod_eq_zero heven⟩
+-    · rw [ite_eq_right heven] at h
++    · rw [if_neg heven] at h
+       exact rhoTry_spec restarts 0 r h
+ 
+ /-- A counted rho success is a validated proper factor. -/
+@@ -479,11 +479,11 @@
+       intro m
+       unfold divOut
+       by_cases hc : 1 < p ∧ m % p = 0
+-      · rw [ite_eq_left hc]
++      · rw [if_pos hc]
+         dsimp only
+         rw [Nat.pow_succ, Nat.mul_right_comm, ih (m / p)]
+         exact Nat.div_mul_cancel (Nat.dvd_of_mod_eq_zero hc.2)
+-      · rw [ite_eq_right hc]
++      · rw [if_neg hc]
+         simp
+ 
+ /-- Trial division over the committed table entries. -/
+@@ -509,10 +509,10 @@
+       intro acc m
+       unfold trialGo
+       by_cases hc : 1 < p ∧ m % p = 0
+-      · rw [ite_eq_left hc, ih]
++      · rw [if_pos hc, ih]
+         simp only [prodPows]
+         rw [Nat.mul_right_comm, divOut_prod, Nat.mul_comm]
+-      · rw [ite_eq_right hc]
++      · rw [if_neg hc]
+         exact ih acc m
+ 
+ /-- Merge one prime occurrence into a claimed factor list. -/
+@@ -532,11 +532,11 @@
+       obtain ⟨q, e⟩ := a
+       unfold insertFactor
+       by_cases hq : q = p
+-      · rw [ite_eq_left hq]
++      · rw [if_pos hq]
+         subst hq
+         simp only [prodPows, Nat.pow_succ]
+         simp [Nat.mul_assoc, Nat.mul_comm]
+-      · rw [ite_eq_right hq]
++      · rw [if_neg hq]
+         simp only [prodPows, ih]
+         simp [Nat.mul_left_comm]
+ 
+@@ -582,13 +582,13 @@
+   | succ fuel =>
+       simp only [pMinusOnePhase]
+       by_cases hsmall : m < 4
+-      · rw [ite_eq_left hsmall]
++      · rw [if_pos hsmall]
+         simp [listProd]
+-      · rw [ite_eq_right hsmall]
++      · rw [if_neg hsmall]
+         by_cases hprime : isProbablePrime m
+-        · rw [ite_eq_left hprime, insertFactor_prod]
++        · rw [if_pos hprime, insertFactor_prod]
+           simp [listProd, Nat.mul_comm]
+-        · rw [ite_eq_right hprime]
++        · rw [if_neg hprime]
+           split
+           · rename_i d hfactor
+             have hproper : 1 < d ∧ d < m ∧ d ∣ m := by
+@@ -763,15 +763,15 @@
+       | m :: stack =>
+           unfold splitPhase
+           by_cases h1 : m = 1
+-          · rw [ite_eq_left h1, ih]
++          · rw [if_pos h1, ih]
+             subst h1
+             simp [listProd]
+-          · rw [ite_eq_right h1]
++          · rw [if_neg h1]
+             by_cases hp : isProbablePrime m
+-            · rw [ite_eq_left hp, ih, insertFactor_prod]
++            · rw [if_pos hp, ih, insertFactor_prod]
+               simp only [listProd]
+               simp [Nat.mul_assoc, Nat.mul_comm, Nat.mul_left_comm]
+-            · rw [ite_eq_right hp]
++            · rw [if_neg hp]
+               dsimp only
+               split
+               · rename_i d hd
+@@ -994,7 +994,7 @@
+ 
+ /-- Assemble the cube-root node for the factored part `F`: the cofactor
+ decomposition `R = 2Fs + r` and the square-root witness for the
+-discriminant. Runtime only, so `Nat.sqrt` is fine here (it never enters a
++discriminant. Runtime only, so `HexArith.Nat.floorSqrt` is fine here (it never enters a
+ proof term); the public wrapper's `checkPrime` validation decides
+ acceptance. -/
+ private def mkPock3 (n F : Nat) (entries : List (Nat × Nat × PrimeCert)) :
+@@ -1003,7 +1003,7 @@
+   let window := 2 * F
+   let r := cofactor % window
+   let s := cofactor / window
+-  .pock3 n r s (Nat.sqrt (r * r - 8 * s)) entries
++  .pock3 n r s (HexArith.Nat.floorSqrt (r * r - 8 * s)) entries
+ 
+ mutual
+ 
+@@ -1195,20 +1195,20 @@
+     (hstop : f.stop = .composite) : ¬ Prime n := by
+   unfold primeCertGo at h
+   by_cases h2 : n < 2
+-  · rw [ite_eq_left h2] at h
++  · rw [if_pos h2] at h
+     intro hp
+     have := hp.two_le
+     omega
+-  · rw [ite_eq_right h2] at h
++  · rw [if_neg h2] at h
+     by_cases htab : n < primeTableBound
+-    · rw [ite_eq_left htab] at h
++    · rw [if_pos htab] at h
+       by_cases hhit : isTablePrime n = true
+-      · rw [ite_eq_left hhit] at h
++      · rw [if_pos hhit] at h
+         cases h
+-      · rw [ite_eq_right hhit] at h
++      · rw [if_neg hhit] at h
+         intro hp
+         exact hhit (isTablePrime_iff.mpr (mem_primeTable_of_prime hp htab))
+-    · rw [ite_eq_right htab] at h
++    · rw [if_neg htab] at h
+       split at h
+       · rename_i a hfind
+         intro hp
+@@ -1336,7 +1336,7 @@
+     b = true ↔ Prime n := by
+   unfold isPrime? at h
+   by_cases ht : n < primeTableBound
+-  · rw [ite_eq_left ht] at h
++  · rw [if_pos ht] at h
+     injection h with h
+     injection h with hb hr
+     subst hb
+@@ -1345,9 +1345,9 @@
+       exact mem_primeTable_prime (isTablePrime_iff.mp hb')
+     · intro hp
+       exact isTablePrime_iff.mpr (mem_primeTable_of_prime hp ht)
+-  · rw [ite_eq_right ht] at h
++  · rw [if_neg ht] at h
+     by_cases htrial : n < isPrimeTrialThreshold
+-    · rw [ite_eq_left htrial] at h
++    · rw [if_pos htrial] at h
+       split at h
+       · rename_i a hfind
+         have ha : millerRabin n a = false := by
+@@ -1364,7 +1364,7 @@
+         injection h with hb hr
+         subst hb
+         exact ⟨isPrimeTrial_isPrime, isPrimeTrial_of_prime⟩
+-    · rw [ite_eq_right htrial] at h
++    · rw [if_neg htrial] at h
+       split at h
+       · rename_i cert r2 hok
+         injection h with h
+--- a/HexPrimality/Sieve.lean
++++ b/HexPrimality/Sieve.lean
+@@ -7,7 +7,7 @@
+ module
+ 
+ public import HexArith.Nat.Prime
+-public import Init.Data.Nat.Sqrt
++public import HexArith.Nat.Sqrt
+ 
+ public section
+ 
+@@ -23,7 +23,7 @@
+ The sieve definitions are `@[expose]` and structurally recursive:
+ generating and verifying the committed prime table is a kernel
+ computation, which is the point of this module (see the SPEC's "Initial
+-segments"); `sqrtBound` is data because core `Nat.sqrt` is defined by
++segments"); `sqrtBound` is data because core `HexArith.Nat.floorSqrt` is defined by
+ well-founded recursion and does not kernel-reduce.
+ 
+ `sieve_prime_iff` proves exact primality at represented positive indices.
+@@ -401,8 +401,8 @@
+ def sieveInit (width : Nat) : Nat := 2 ^ width - 2
+ 
+ /-- The sieve over values below `bound`, marking candidates up to
+-`sqrtBound`. `sqrtBound` is data (rather than `Nat.sqrt bound`) because
+-core `Nat.sqrt` does not kernel-reduce; correctness only needs
++`sqrtBound`. `sqrtBound` is data (rather than `HexArith.Nat.floorSqrt bound`) because
++core `HexArith.Nat.floorSqrt` does not kernel-reduce; correctness only needs
+ `bound ≤ sqrtBound²`. -/
+ @[expose]
+ def sieve (bound sqrtBound : Nat) : Nat :=
+@@ -644,7 +644,7 @@
+       intro start count h
+       by_cases hc : count = 0
+       · subst count; simp [readChunks, bitsToListGo]
+-      · rw [readChunks, ite_eq_right hc]
++      · rw [readChunks, if_neg hc]
+         dsimp only
+         rw [readBits_eq state start 64 0 (min 64 count) (by omega),
+           Nat.add_zero, ih (start + min 64 count) (count - min 64 count) (by
+@@ -692,7 +692,7 @@
+       intro t0 n
+       unfold bitsToListGo
+       by_cases hbit : state.testBit t0 = true
+-      · rw [ite_eq_left hbit]
++      · rw [if_pos hbit]
+         constructor
+         · intro h
+           rcases List.mem_cons.mp h with rfl | h'
+@@ -705,7 +705,7 @@
+             exact List.mem_cons_self ..
+           · exact List.mem_cons_of_mem _
+               ((ih (t0 + 1) n).mpr ⟨t, by omega, by omega, h3, h4⟩)
+-      · rw [ite_eq_right hbit]
++      · rw [if_neg hbit]
+         rw [ih (t0 + 1) n]
+         constructor
+         · rintro ⟨t, h1, h2, h3, h4⟩
+@@ -740,13 +740,13 @@
+       intro t0
+       unfold bitsToListGo
+       by_cases hbit : state.testBit t0 = true
+-      · rw [ite_eq_left hbit]
++      · rw [if_pos hbit]
+         rw [List.pairwise_cons]
+         refine ⟨?_, ih (t0 + 1)⟩
+         intro x hx
+         obtain ⟨t, h1, _, _, rfl⟩ := (mem_bitsToListGo fuel (t0 + 1) x).mp hx
+         exact numOfIndex_lt_numOfIndex.mpr (by omega)
+-      · rw [ite_eq_right hbit]
++      · rw [if_neg hbit]
+         exact ih (t0 + 1)
+ 
+ /-- The read-back list is strictly ascending. -/
+@@ -771,7 +771,7 @@
+ def primesBelow (bound : Nat) : List Nat :=
+   if bound ≤ 2 then []
+   else if bound ≤ 3 then [2]
+-  else 2 :: 3 :: bitsToList (sieve bound (bound.sqrt + 1)) bound
++  else 2 :: 3 :: bitsToList (sieve bound ((HexArith.Nat.floorSqrt bound) + 1)) bound
+ 
+ /-- Exact membership in the runtime prime enumeration. -/
+ theorem mem_primesBelow {bound n : Nat} :
+@@ -799,8 +799,8 @@
+       have hw : 1 ≤ indexWidth bound := by
+         unfold indexWidth
+         split <;> omega
+-      have hs : bound ≤ (bound.sqrt + 1) * (bound.sqrt + 1) :=
+-        Nat.le_of_lt (Nat.lt_succ_sqrt bound)
++      have hs : bound ≤ ((HexArith.Nat.floorSqrt bound) + 1) * ((HexArith.Nat.floorSqrt bound) + 1) :=
++        Nat.le_of_lt (HexArith.Nat.lt_floorSqrt_succ_mul bound)
+       simp only [List.mem_cons, mem_bitsToList hw]
+       constructor
+       · rintro (rfl | rfl | ⟨t, ht, hr, hbit, rfl⟩)
+@@ -837,7 +837,7 @@
+     · simp
+     · rename_i hb hb3
+       have hw : 1 ≤ indexWidth bound := by unfold indexWidth; split <;> omega
+-      have hlarge : ∀ n ∈ bitsToList (sieve bound (bound.sqrt + 1)) bound,
++      have hlarge : ∀ n ∈ bitsToList (sieve bound ((HexArith.Nat.floorSqrt bound) + 1)) bound,
+           3 < n := by
+         intro n hn
+         obtain ⟨t, ht, _, _, rfl⟩ := (mem_bitsToList hw).mp hn
+--- a/HexPrimality/Squfof.lean
++++ b/HexPrimality/Squfof.lean
+@@ -173,7 +173,7 @@
+         | none => return stopped n .arithmetic fwd rev peak fuel
+         | some next =>
+           if index % 2 = 0 then
+-            let r := Nat.sqrt next.q
++            let r := HexArith.Nat.floorSqrt next.q
+             if r * r = next.q then
+               match afterMatch queue r next.p with
+               | some rest =>
+@@ -198,7 +198,7 @@
+   induction fuel generalizing form queue index saved fwd rev peak with
+   | zero => simpa [search, stopped] using hp
+   | succ fuel ih =>
+-    simp only [search, Id.run, pure]
++    simp only [search, Id.run, pure, bind]
+     repeat' split
+     all_goals simp_all [stopped, terminal, List.length_append]
+     all_goals try apply ih
+@@ -218,14 +218,14 @@
+   else
+     let M := k * n
+     let D := if M % 4 = 1 then 2 * M else M
+-    let S := Nat.sqrt D
++    let S := HexArith.Nat.floorSqrt D
+     if S * S = D then
+       terminal n (Nat.gcd S n) 0 0 0
+     else
+       let Q := D - S * S
+       if Q = 0 then stopped n .arithmetic 0 0 0 limits.steps
+       else
+-        let a := search n k D S (Nat.sqrt (Nat.sqrt (4 * D)))
++        let a := search n k D S (HexArith.Nat.floorSqrt (HexArith.Nat.floorSqrt (4 * D)))
+           limits.queueCapacity limits.steps ⟨1, S, Q⟩ [] 0 none 0 0 0
+         { a with steps := limits.steps - a.remaining }
+ 
+@@ -328,7 +328,7 @@
+     | some d => ⟨.factor d, 0, 0, 0⟩
+     | none => ⟨.noFactor, 0, 0, 0⟩
+   else
+-    let s := Nat.sqrt n
++    let s := HexArith.Nat.floorSqrt n
+     if s * s = n then
+       match validated n s with
+       | some d => ⟨.factor d, 0, 0, 0⟩
+--- a/HexPrimality/Table.lean
++++ b/HexPrimality/Table.lean
+@@ -1016,7 +1016,7 @@
+ 
+ private theorem getD_eq {a : Array Nat} {i : Nat} (h : i < a.size) :
+     a.getD i 0 = a[i] := by
+-  rw [Array.getD_eq_getD_getElem?, Array.getD_getElem?, dite_eq_left h]
++  rw [Array.getD_eq_getD_getElem?, Array.getD_getElem?, dif_pos h]
+ 
+ private theorem getD_le_getD {a : Array Nat}
+     (hs : a.toList.Pairwise (· < ·)) {i j : Nat} (hij : i ≤ j)
+@@ -1060,20 +1060,20 @@
+       intro lo hi hhi h
+       unfold binSearchGo at h
+       by_cases hlh : lo < hi
+-      · rw [ite_eq_left hlh] at h
++      · rw [if_pos hlh] at h
+         have hmid : (lo + hi) / 2 < a.size := by omega
+         by_cases heq : a.getD ((lo + hi) / 2) 0 = n
+         · have : a.getD ((lo + hi) / 2) 0 = a[(lo + hi) / 2] := by
+             simp [Array.getD, hmid]
+           rw [this] at heq
+           exact heq ▸ Array.getElem_mem hmid
+-        · rw [ite_eq_right heq] at h
++        · rw [if_neg heq] at h
+           by_cases hlt : a.getD ((lo + hi) / 2) 0 < n
+-          · rw [ite_eq_left hlt] at h
++          · rw [if_pos hlt] at h
+             exact ih ((lo + hi) / 2 + 1) hi hhi h
+-          · rw [ite_eq_right hlt] at h
++          · rw [if_neg hlt] at h
+             exact ih lo ((lo + hi) / 2) (by omega) h
+-      · rw [ite_eq_right hlh] at h
++      · rw [if_neg hlh] at h
+         cases h
+ 
+ private theorem binSearchGo_complete {a : Array Nat} {n : Nat}
+@@ -1093,12 +1093,12 @@
+         rw [Nat.pow_succ]; omega
+       have hlh : lo < hi := by omega
+       unfold binSearchGo
+-      rw [ite_eq_left hlh]
++      rw [if_pos hlh]
+       by_cases heq : a.getD ((lo + hi) / 2) 0 = n
+-      · rw [ite_eq_left heq]
+-      · rw [ite_eq_right heq]
++      · rw [if_pos heq]
++      · rw [if_neg heq]
+         by_cases hlt : a.getD ((lo + hi) / 2) 0 < n
+-        · rw [ite_eq_left hlt]
++        · rw [if_pos hlt]
+           -- The target index is strictly above the midpoint: at or below it
+           -- the sorted values are at most the midpoint value, which is < n.
+           have hup : (lo + hi) / 2 < i := by
+@@ -1107,7 +1107,7 @@
+             · have := getD_le_getD hs h (by omega : (lo + hi) / 2 < a.size)
+               omega
+           exact ih ((lo + hi) / 2 + 1) hi i hhi (by omega) (by omega) hihi hval
+-        · rw [ite_eq_right hlt]
++        · rw [if_neg hlt]
+           -- Symmetrically the target index is strictly below the midpoint.
+           have hdown : i < (lo + hi) / 2 := by
+             rcases Nat.lt_or_ge i ((lo + hi) / 2) with h | h
+--- a/lakefile.toml
++++ b/lakefile.toml
+@@ -8,13 +8,16 @@
+ 
+ [[require]]
+ name = "HexBasic"
+-git = "https://github.com/leanprover/hex-basic.git"
+-rev = "v0.10.0"
++path = "../hex-basic"
+ 
+ [[require]]
+ name = "HexArith"
+-git = "https://github.com/leanprover/hex-arith.git"
+-rev = "v0.10.0"
++path = "../hex-arith"
++
++[[require]]
++name = "mathlib"
++git = "https://github.com/leanprover-community/mathlib4.git"
++rev = "c5ea00351c28e24afc9f0f84379aa41082b1188f"
+ 
+ [[lean_lib]]
+ name = "HexPrimality"
+--- a/lean-toolchain
++++ b/lean-toolchain
+@@ -1 +1 @@
+-leanprover/lean4:v4.35.0-rc3
++leanprover/lean4:v4.30.0

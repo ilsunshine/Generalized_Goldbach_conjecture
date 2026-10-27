@@ -1,0 +1,1481 @@
+{
+  "schema_version": 2,
+  "tex_sources": {
+    "latex/main.tex": "72b240220efd2de30d733d5f2836ec02dd6329af67ad327298c3b252e9eff0bf",
+    "latex/sections/01-introduction.tex": "ba6b561a6b15cd29134422201171d2fe5ac04c191a6e84cf4dc46721d9ae38c4",
+    "latex/sections/02-preliminaries.tex": "436365a68ff7612051c786c0acca0d3abfedd55a5a917f51deabf5e49ae31b00",
+    "latex/sections/03-rigidity.tex": "c2a9460ae03179ed753050855970d0f6f90ddf247cdbdf19ae0e4279f925fb0d",
+    "latex/sections/04-interval-chains.tex": "111d19817e2216441a29ba7ceae8e8a06fac62194e938aa292f31ebf11546ac2",
+    "latex/sections/05-small-primes.tex": "8a5510d1cc28fc36b70a085d5f7ef90ce59a233eaec5750a8479134fb58cfc6a",
+    "latex/sections/06-large-primes.tex": "fd2976924e155a9d9aa44c8e11a2bf3e6402732e5fe4ab1977a57d3a23aa1893",
+    "latex/sections/07-finite-closure.tex": "b75c556a13a4cc59f3217073ee69a438ab53b6a8a8eab80cff4b894a5b942b80",
+    "latex/sections/appendix-a-formal-structure.tex": "58b82aa678f96d79835427fccf25ab560e22ff2d240190de4baba35583806190",
+    "latex/sections/appendix-b-bertrand.tex": "e4e60648679e4a8e9a33417b1ceed58ad9cebaa7ff4b2dd81fddda1b5d3da5f4",
+    "latex/sections/appendix-c-certificates.tex": "4cd3b96c2eb97a38695f7d4f863def5b0344eb505ce201e6d2fa7e1291eb9062"
+  },
+  "labels": {
+    "sec:introduction": {
+      "number": "1",
+      "kind": "节",
+      "file": "latex/sections/01-introduction.tex"
+    },
+    "eq:sign-definition": {
+      "number": "1.1",
+      "kind": "式",
+      "file": "latex/sections/01-introduction.tex"
+    },
+    "eq:representation-count": {
+      "number": "1.2",
+      "kind": "式",
+      "file": "latex/sections/01-introduction.tex"
+    },
+    "thm:main": {
+      "number": "1.1",
+      "kind": "定理",
+      "file": "latex/sections/01-introduction.tex"
+    },
+    "eq:main": {
+      "number": "1.3",
+      "kind": "式",
+      "file": "latex/sections/01-introduction.tex"
+    },
+    "cor:negative-negative": {
+      "number": "1.2",
+      "kind": "推论",
+      "file": "latex/sections/01-introduction.tex"
+    },
+    "sec:preliminaries": {
+      "number": "2",
+      "kind": "节",
+      "file": "latex/sections/02-preliminaries.tex"
+    },
+    "lem:sign-rules": {
+      "number": "2.1",
+      "kind": "引理",
+      "file": "latex/sections/02-preliminaries.tex"
+    },
+    "eq:support-union": {
+      "number": "2.1",
+      "kind": "式",
+      "file": "latex/sections/02-preliminaries.tex"
+    },
+    "eq:prime-multiplication": {
+      "number": "2.2",
+      "kind": "式",
+      "file": "latex/sections/02-preliminaries.tex"
+    },
+    "def:admissible": {
+      "number": "2.2",
+      "kind": "定义",
+      "file": "latex/sections/02-preliminaries.tex"
+    },
+    "eq:H": {
+      "number": "2.3",
+      "kind": "式",
+      "file": "latex/sections/02-preliminaries.tex"
+    },
+    "eq:auxiliary-notation": {
+      "number": "2.4",
+      "kind": "式",
+      "file": "latex/sections/02-preliminaries.tex"
+    },
+    "lem:least-missing": {
+      "number": "2.3",
+      "kind": "引理",
+      "file": "latex/sections/02-preliminaries.tex"
+    },
+    "eq:prefix-divides": {
+      "number": "2.5",
+      "kind": "式",
+      "file": "latex/sections/02-preliminaries.tex"
+    },
+    "lem:auxiliary-arithmetic": {
+      "number": "2.4",
+      "kind": "引理",
+      "file": "latex/sections/02-preliminaries.tex"
+    },
+    "eq:radical-arithmetic": {
+      "number": "2.6",
+      "kind": "式",
+      "file": "latex/sections/02-preliminaries.tex"
+    },
+    "sec:rigidity": {
+      "number": "3",
+      "kind": "节",
+      "file": "latex/sections/03-rigidity.tex"
+    },
+    "lem:four-decompositions": {
+      "number": "3.1",
+      "kind": "引理",
+      "file": "latex/sections/03-rigidity.tex"
+    },
+    "eq:four-decompositions": {
+      "number": "3.1",
+      "kind": "式",
+      "file": "latex/sections/03-rigidity.tex"
+    },
+    "eq:four-formulas": {
+      "number": "3.2",
+      "kind": "式",
+      "file": "latex/sections/03-rigidity.tex"
+    },
+    "eq:four-prime-relations": {
+      "number": "3.3",
+      "kind": "式",
+      "file": "latex/sections/03-rigidity.tex"
+    },
+    "prop:odd-rigidity": {
+      "number": "3.2",
+      "kind": "命题",
+      "file": "latex/sections/03-rigidity.tex"
+    },
+    "eq:odd-sign-table": {
+      "number": "3.4",
+      "kind": "式",
+      "file": "latex/sections/03-rigidity.tex"
+    },
+    "prop:even-rigidity": {
+      "number": "3.3",
+      "kind": "命题",
+      "file": "latex/sections/03-rigidity.tex"
+    },
+    "eq:even-parameter": {
+      "number": "3.5",
+      "kind": "式",
+      "file": "latex/sections/03-rigidity.tex"
+    },
+    "eq:even-quotient": {
+      "number": "3.6",
+      "kind": "式",
+      "file": "latex/sections/03-rigidity.tex"
+    },
+    "eq:even-sign-table": {
+      "number": "3.7",
+      "kind": "式",
+      "file": "latex/sections/03-rigidity.tex"
+    },
+    "cor:parameters-four": {
+      "number": "3.4",
+      "kind": "推论",
+      "file": "latex/sections/03-rigidity.tex"
+    },
+    "sec:chains": {
+      "number": "4",
+      "kind": "节",
+      "file": "latex/sections/04-interval-chains.tex"
+    },
+    "def:interval-chain": {
+      "number": "4.1",
+      "kind": "定义",
+      "file": "latex/sections/04-interval-chains.tex"
+    },
+    "eq:chain-conditions": {
+      "number": "4.1",
+      "kind": "式",
+      "file": "latex/sections/04-interval-chains.tex"
+    },
+    "lem:chain-scaling": {
+      "number": "4.2",
+      "kind": "引理",
+      "file": "latex/sections/04-interval-chains.tex"
+    },
+    "eq:scaling-exponent": {
+      "number": "4.2",
+      "kind": "式",
+      "file": "latex/sections/04-interval-chains.tex"
+    },
+    "eq:scaled-point": {
+      "number": "4.3",
+      "kind": "式",
+      "file": "latex/sections/04-interval-chains.tex"
+    },
+    "eq:uniform-parameters": {
+      "number": "4.4",
+      "kind": "式",
+      "file": "latex/sections/04-interval-chains.tex"
+    },
+    "eq:uniform-even-data": {
+      "number": "4.5",
+      "kind": "式",
+      "file": "latex/sections/04-interval-chains.tex"
+    },
+    "eq:congruence-cancellation": {
+      "number": "4.6",
+      "kind": "式",
+      "file": "latex/sections/04-interval-chains.tex"
+    },
+    "eq:uniform-odd-data": {
+      "number": "4.7",
+      "kind": "式",
+      "file": "latex/sections/04-interval-chains.tex"
+    },
+    "prop:uniform-threshold": {
+      "number": "4.3",
+      "kind": "命题",
+      "file": "latex/sections/04-interval-chains.tex"
+    },
+    "sec:small": {
+      "number": "5",
+      "kind": "节",
+      "file": "latex/sections/05-small-primes.tex"
+    },
+    "prop:q3-q5": {
+      "number": "5.1",
+      "kind": "命题",
+      "file": "latex/sections/05-small-primes.tex"
+    },
+    "eq:q3-odd-witnesses": {
+      "number": "5.1",
+      "kind": "式",
+      "file": "latex/sections/05-small-primes.tex"
+    },
+    "eq:q7-even-class": {
+      "number": "5.2",
+      "kind": "式",
+      "file": "latex/sections/05-small-primes.tex"
+    },
+    "lem:q7-exceptions": {
+      "number": "5.2",
+      "kind": "引理",
+      "file": "latex/sections/05-small-primes.tex"
+    },
+    "eq:q7-exception-decompositions": {
+      "number": "5.3",
+      "kind": "式",
+      "file": "latex/sections/05-small-primes.tex"
+    },
+    "prop:q7": {
+      "number": "5.3",
+      "kind": "命题",
+      "file": "latex/sections/05-small-primes.tex"
+    },
+    "prop:small-primes": {
+      "number": "5.4",
+      "kind": "命题",
+      "file": "latex/sections/05-small-primes.tex"
+    },
+    "sec:large": {
+      "number": "6",
+      "kind": "节",
+      "file": "latex/sections/06-large-primes.tex"
+    },
+    "lem:three-term": {
+      "number": "6.1",
+      "kind": "引理",
+      "file": "latex/sections/06-large-primes.tex"
+    },
+    "eq:three-term": {
+      "number": "6.1",
+      "kind": "式",
+      "file": "latex/sections/06-large-primes.tex"
+    },
+    "lem:three-point": {
+      "number": "6.2",
+      "kind": "引理",
+      "file": "latex/sections/06-large-primes.tex"
+    },
+    "eq:square-class-condition": {
+      "number": "6.2",
+      "kind": "式",
+      "file": "latex/sections/06-large-primes.tex"
+    },
+    "lem:small-representative": {
+      "number": "6.3",
+      "kind": "引理",
+      "file": "latex/sections/06-large-primes.tex"
+    },
+    "eq:small-representative": {
+      "number": "6.3",
+      "kind": "式",
+      "file": "latex/sections/06-large-primes.tex"
+    },
+    "lem:two-signs-gap": {
+      "number": "6.4",
+      "kind": "引理",
+      "file": "latex/sections/06-large-primes.tex"
+    },
+    "eq:two-signs-gap": {
+      "number": "6.4",
+      "kind": "式",
+      "file": "latex/sections/06-large-primes.tex"
+    },
+    "sec:tail-sufficient": {
+      "number": "6.2",
+      "kind": "节",
+      "file": "latex/sections/06-large-primes.tex"
+    },
+    "prop:sufficient-bound": {
+      "number": "6.5",
+      "kind": "命题",
+      "file": "latex/sections/06-large-primes.tex"
+    },
+    "eq:sufficient-bound": {
+      "number": "6.5",
+      "kind": "式",
+      "file": "latex/sections/06-large-primes.tex"
+    },
+    "eq:odd-gap-bound": {
+      "number": "6.6",
+      "kind": "式",
+      "file": "latex/sections/06-large-primes.tex"
+    },
+    "eq:even-gap-bound": {
+      "number": "6.7",
+      "kind": "式",
+      "file": "latex/sections/06-large-primes.tex"
+    },
+    "sec:original-tail": {
+      "number": "6.3",
+      "kind": "节",
+      "file": "latex/sections/06-large-primes.tex"
+    },
+    "lem:tail-base-cases": {
+      "number": "6.6",
+      "kind": "引理",
+      "file": "latex/sections/06-large-primes.tex"
+    },
+    "eq:tail-base-cases": {
+      "number": "6.8",
+      "kind": "式",
+      "file": "latex/sections/06-large-primes.tex"
+    },
+    "lem:nagura-product": {
+      "number": "6.7",
+      "kind": "引理",
+      "file": "latex/sections/06-large-primes.tex"
+    },
+    "eq:nagura-product": {
+      "number": "6.9",
+      "kind": "式",
+      "file": "latex/sections/06-large-primes.tex"
+    },
+    "eq:nagura-step": {
+      "number": "6.10",
+      "kind": "式",
+      "file": "latex/sections/06-large-primes.tex"
+    },
+    "prop:large-tail": {
+      "number": "6.8",
+      "kind": "命题",
+      "file": "latex/sections/06-large-primes.tex"
+    },
+    "eq:nagura-polynomial": {
+      "number": "6.11",
+      "kind": "式",
+      "file": "latex/sections/06-large-primes.tex"
+    },
+    "sec:finite": {
+      "number": "7",
+      "kind": "节",
+      "file": "latex/sections/07-finite-closure.tex"
+    },
+    "prop:finite-candidates": {
+      "number": "7.1",
+      "kind": "命题",
+      "file": "latex/sections/07-finite-closure.tex"
+    },
+    "eq:finite-candidate": {
+      "number": "7.1",
+      "kind": "式",
+      "file": "latex/sections/07-finite-closure.tex"
+    },
+    "eq:candidate-bounds": {
+      "number": "7.2",
+      "kind": "式",
+      "file": "latex/sections/07-finite-closure.tex"
+    },
+    "prop:candidate-count": {
+      "number": "7.2",
+      "kind": "命题",
+      "file": "latex/sections/07-finite-closure.tex"
+    },
+    "eq:candidate-count": {
+      "number": "7.3",
+      "kind": "式",
+      "file": "latex/sections/07-finite-closure.tex"
+    },
+    "tab:finite-candidates": {
+      "number": "1",
+      "kind": "表",
+      "file": "latex/sections/07-finite-closure.tex"
+    },
+    "prop:finite-witnesses": {
+      "number": "7.3",
+      "kind": "命题",
+      "file": "latex/sections/07-finite-closure.tex"
+    },
+    "eq:csv-signs": {
+      "number": "7.4",
+      "kind": "式",
+      "file": "latex/sections/07-finite-closure.tex"
+    },
+    "app:formal": {
+      "number": "A",
+      "kind": "节",
+      "file": "latex/sections/appendix-a-formal-structure.tex"
+    },
+    "def:formal-patterns": {
+      "number": "A.1",
+      "kind": "定义",
+      "file": "latex/sections/appendix-a-formal-structure.tex"
+    },
+    "lem:formal-count": {
+      "number": "A.2",
+      "kind": "引理",
+      "file": "latex/sections/appendix-a-formal-structure.tex"
+    },
+    "lem:formal-crt": {
+      "number": "A.3",
+      "kind": "引理",
+      "file": "latex/sections/appendix-a-formal-structure.tex"
+    },
+    "app:bertrand": {
+      "number": "B",
+      "kind": "节",
+      "file": "latex/sections/appendix-b-bertrand.tex"
+    },
+    "eq:bertrand-polynomial": {
+      "number": "B.1",
+      "kind": "式",
+      "file": "latex/sections/appendix-b-bertrand.tex"
+    },
+    "lem:bertrand-anchors": {
+      "number": "B.1",
+      "kind": "引理",
+      "file": "latex/sections/appendix-b-bertrand.tex"
+    },
+    "eq:bertrand-anchors": {
+      "number": "B.2",
+      "kind": "式",
+      "file": "latex/sections/appendix-b-bertrand.tex"
+    },
+    "lem:bertrand-finite": {
+      "number": "B.2",
+      "kind": "引理",
+      "file": "latex/sections/appendix-b-bertrand.tex"
+    },
+    "eq:bertrand-finite": {
+      "number": "B.3",
+      "kind": "式",
+      "file": "latex/sections/appendix-b-bertrand.tex"
+    },
+    "lem:bertrand-step": {
+      "number": "B.3",
+      "kind": "引理",
+      "file": "latex/sections/appendix-b-bertrand.tex"
+    },
+    "eq:bertrand-step": {
+      "number": "B.4",
+      "kind": "式",
+      "file": "latex/sections/appendix-b-bertrand.tex"
+    },
+    "prop:bertrand-product": {
+      "number": "B.4",
+      "kind": "命题",
+      "file": "latex/sections/appendix-b-bertrand.tex"
+    },
+    "thm:bertrand-tail": {
+      "number": "B.5",
+      "kind": "定理",
+      "file": "latex/sections/appendix-b-bertrand.tex"
+    },
+    "app:certificates": {
+      "number": "C",
+      "kind": "节",
+      "file": "latex/sections/appendix-c-certificates.tex"
+    },
+    "sec:full-certification": {
+      "number": "C",
+      "kind": "节",
+      "file": "latex/sections/appendix-c-certificates.tex"
+    },
+    "lem:prime-certificate": {
+      "number": "C.1",
+      "kind": "引理",
+      "file": "latex/sections/appendix-c-certificates.tex"
+    },
+    "lem:factor-certificate": {
+      "number": "C.2",
+      "kind": "引理",
+      "file": "latex/sections/appendix-c-certificates.tex"
+    },
+    "eq:factor-certificate": {
+      "number": "C.1",
+      "kind": "式",
+      "file": "latex/sections/appendix-c-certificates.tex"
+    },
+    "eq:factor-sign": {
+      "number": "C.2",
+      "kind": "式",
+      "file": "latex/sections/appendix-c-certificates.tex"
+    },
+    "lem:range-coverage": {
+      "number": "C.3",
+      "kind": "引理",
+      "file": "latex/sections/appendix-c-certificates.tex"
+    },
+    "eq:range-coverage": {
+      "number": "C.3",
+      "kind": "式",
+      "file": "latex/sections/appendix-c-certificates.tex"
+    },
+    "lem:numeric-chain": {
+      "number": "C.4",
+      "kind": "引理",
+      "file": "latex/sections/appendix-c-certificates.tex"
+    },
+    "prop:uniform-certification": {
+      "number": "C.5",
+      "kind": "命题",
+      "file": "latex/sections/appendix-c-certificates.tex"
+    },
+    "prop:csv-certification": {
+      "number": "C.6",
+      "kind": "命题",
+      "file": "latex/sections/appendix-c-certificates.tex"
+    }
+  },
+  "paper": {
+    "file": "proof/paper.pdf",
+    "sha256": "44ba14d4465c792b6168f23ebb8d43bbb950a0203e84333111706d3d81c90fd4"
+  },
+  "declarations": [
+    {
+      "file": "GeneralizedGoldbach/AuxiliaryPrime.lean",
+      "name": "oddPrimeProduct_pos",
+      "labels": [
+        "eq:auxiliary-notation"
+      ]
+    },
+    {
+      "file": "GeneralizedGoldbach/AuxiliaryPrime.lean",
+      "name": "oddPrimeProduct_coprime",
+      "labels": [
+        "lem:least-missing"
+      ]
+    },
+    {
+      "file": "GeneralizedGoldbach/AuxiliaryPrime.lean",
+      "name": "exists_least_missing_odd_prime",
+      "labels": [
+        "lem:least-missing",
+        "app:formal"
+      ]
+    },
+    {
+      "file": "GeneralizedGoldbach/AuxiliaryPrime.lean",
+      "name": "least_missing_implies_admissible",
+      "labels": [
+        "lem:least-missing",
+        "eq:H"
+      ]
+    },
+    {
+      "file": "GeneralizedGoldbach/AuxiliaryPrime.lean",
+      "name": "least_missing_product_dvd",
+      "labels": [
+        "lem:least-missing",
+        "eq:prefix-divides"
+      ]
+    },
+    {
+      "file": "GeneralizedGoldbach/AuxiliaryPrime.lean",
+      "name": "auxiliary_arithmetic",
+      "labels": [
+        "lem:auxiliary-arithmetic",
+        "eq:radical-arithmetic"
+      ]
+    },
+    {
+      "file": "GeneralizedGoldbach/AuxiliaryPrime.lean",
+      "name": "auxiliary_radical_dvd_even",
+      "labels": [
+        "lem:auxiliary-arithmetic"
+      ]
+    },
+    {
+      "file": "GeneralizedGoldbach/Basic.lean",
+      "name": "g_eq_one_or_neg_one",
+      "labels": [
+        "eq:sign-definition"
+      ]
+    },
+    {
+      "file": "GeneralizedGoldbach/Basic.lean",
+      "name": "g_eq_neg_one_iff",
+      "labels": [
+        "cor:negative-negative"
+      ]
+    },
+    {
+      "file": "GeneralizedGoldbach/Basic.lean",
+      "name": "g_mul_of_coprime",
+      "labels": [
+        "lem:sign-rules",
+        "eq:prime-multiplication"
+      ]
+    },
+    {
+      "file": "GeneralizedGoldbach/Basic.lean",
+      "name": "g_prime_mul_of_not_dvd",
+      "labels": [
+        "lem:sign-rules",
+        "eq:prime-multiplication"
+      ]
+    },
+    {
+      "file": "GeneralizedGoldbach/Basic.lean",
+      "name": "g_prime_mul_of_dvd",
+      "labels": [
+        "lem:sign-rules",
+        "eq:prime-multiplication"
+      ]
+    },
+    {
+      "file": "GeneralizedGoldbach/Basic.lean",
+      "name": "g_pow",
+      "labels": [
+        "lem:sign-rules",
+        "eq:prime-multiplication"
+      ]
+    },
+    {
+      "file": "GeneralizedGoldbach/Basic.lean",
+      "name": "g_prime_pow_mul_of_dvd",
+      "labels": [
+        "lem:sign-rules",
+        "eq:prime-multiplication"
+      ]
+    },
+    {
+      "file": "GeneralizedGoldbach/Basic.lean",
+      "name": "g_prime_sq_mul",
+      "labels": [
+        "lem:sign-rules",
+        "eq:prime-multiplication"
+      ]
+    },
+    {
+      "file": "GeneralizedGoldbach/Basic.lean",
+      "name": "g_mul_of_prime_support_subset",
+      "labels": [
+        "lem:sign-rules",
+        "eq:prime-multiplication"
+      ]
+    },
+    {
+      "file": "GeneralizedGoldbach/Basic.lean",
+      "name": "g_mul_of_odd_prime_support_subset",
+      "labels": [
+        "lem:sign-rules",
+        "eq:prime-multiplication"
+      ]
+    },
+    {
+      "file": "GeneralizedGoldbach/Basic.lean",
+      "name": "rad_pos_squarefree_dvd",
+      "labels": [
+        "lem:auxiliary-arithmetic"
+      ]
+    },
+    {
+      "file": "GeneralizedGoldbach/Basic.lean",
+      "name": "prime_dvd_rad_iff",
+      "labels": [
+        "lem:auxiliary-arithmetic"
+      ]
+    },
+    {
+      "file": "GeneralizedGoldbach/BertrandTail.lean",
+      "name": "oddPrimeProduct_mono",
+      "labels": [
+        "lem:bertrand-finite"
+      ]
+    },
+    {
+      "file": "GeneralizedGoldbach/BertrandTail.lean",
+      "name": "anchor_comparisons",
+      "labels": [
+        "lem:bertrand-anchors",
+        "eq:bertrand-anchors"
+      ]
+    },
+    {
+      "file": "GeneralizedGoldbach/BertrandTail.lean",
+      "name": "finite_prefix_bound",
+      "labels": [
+        "lem:bertrand-finite",
+        "eq:bertrand-finite"
+      ]
+    },
+    {
+      "file": "GeneralizedGoldbach/BertrandTail.lean",
+      "name": "prime_product_bound_step",
+      "labels": [
+        "lem:bertrand-step",
+        "eq:bertrand-step"
+      ]
+    },
+    {
+      "file": "GeneralizedGoldbach/BertrandTail.lean",
+      "name": "prime_product_bound",
+      "labels": [
+        "prop:bertrand-product"
+      ]
+    },
+    {
+      "file": "GeneralizedGoldbach/BertrandTail.lean",
+      "name": "sufficient_bound_lt_polynomial",
+      "labels": [
+        "eq:bertrand-polynomial"
+      ]
+    },
+    {
+      "file": "GeneralizedGoldbach/BertrandTail.lean",
+      "name": "four_patterns_of_large_least_prime",
+      "labels": [
+        "thm:bertrand-tail"
+      ]
+    },
+    {
+      "file": "GeneralizedGoldbach/CertificateDefinitions.lean",
+      "name": "auxiliaryPrimeSet_properties",
+      "labels": [
+        "eq:uniform-parameters"
+      ]
+    },
+    {
+      "file": "GeneralizedGoldbach/Certificates.lean",
+      "name": "uniform_certificate_exists",
+      "labels": [
+        "prop:uniform-certification"
+      ]
+    },
+    {
+      "file": "GeneralizedGoldbach/Certificates.lean",
+      "name": "eligible_residues_inverse_closed",
+      "labels": [
+        "lem:chain-scaling",
+        "eq:congruence-cancellation"
+      ]
+    },
+    {
+      "file": "GeneralizedGoldbach/Certificates.lean",
+      "name": "even_parameters_of_interval_chains",
+      "labels": [
+        "prop:uniform-threshold",
+        "eq:uniform-even-data"
+      ]
+    },
+    {
+      "file": "GeneralizedGoldbach/Certificates.lean",
+      "name": "odd_parameters_of_bounded_witnesses",
+      "labels": [
+        "prop:uniform-threshold",
+        "eq:uniform-odd-data"
+      ]
+    },
+    {
+      "file": "GeneralizedGoldbach/Certificates.lean",
+      "name": "four_patterns_of_uniform_certificate",
+      "labels": [
+        "prop:uniform-threshold"
+      ]
+    },
+    {
+      "file": "GeneralizedGoldbach/Certificates.lean",
+      "name": "four_patterns_of_uniform_threshold",
+      "labels": [
+        "prop:uniform-threshold",
+        "prop:uniform-certification"
+      ]
+    },
+    {
+      "file": "GeneralizedGoldbach/CertificateTree.lean",
+      "name": "range_sound",
+      "labels": [
+        "lem:range-coverage",
+        "eq:range-coverage"
+      ]
+    },
+    {
+      "file": "GeneralizedGoldbach/CertificateTree.lean",
+      "name": "all_node_valid",
+      "labels": [
+        "lem:prime-certificate"
+      ]
+    },
+    {
+      "file": "GeneralizedGoldbach/CertificateTree.lean",
+      "name": "range_node_valid",
+      "labels": [
+        "lem:range-coverage"
+      ]
+    },
+    {
+      "file": "GeneralizedGoldbach/CertificateTree.lean",
+      "name": "range_certified_node",
+      "labels": [
+        "lem:range-coverage"
+      ]
+    },
+    {
+      "file": "GeneralizedGoldbach/CertifiedCheckers.lean",
+      "name": "numericChainValid_of_certificate",
+      "labels": [
+        "lem:numeric-chain"
+      ]
+    },
+    {
+      "file": "GeneralizedGoldbach/CertifiedCheckers.lean",
+      "name": "intervalChain_of_certificate",
+      "labels": [
+        "lem:numeric-chain"
+      ]
+    },
+    {
+      "file": "GeneralizedGoldbach/CertifiedCheckers.lean",
+      "name": "explicitRepresentation_of_certificate",
+      "labels": [
+        "prop:csv-certification",
+        "eq:csv-signs"
+      ]
+    },
+    {
+      "file": "GeneralizedGoldbach/CertifiedCheckers.lean",
+      "name": "fourPatterns_of_certificate",
+      "labels": [
+        "prop:csv-certification"
+      ]
+    },
+    {
+      "file": "GeneralizedGoldbach/ChainCertificate.lean",
+      "name": "intervalChain_of_numeric",
+      "labels": [
+        "lem:numeric-chain"
+      ]
+    },
+    {
+      "file": "GeneralizedGoldbach/ChainCertificate.lean",
+      "name": "intervalChains_of_table",
+      "labels": [
+        "lem:numeric-chain",
+        "prop:uniform-certification"
+      ]
+    },
+    {
+      "file": "GeneralizedGoldbach/FactorCertificate.lean",
+      "name": "prime_of_certificate",
+      "labels": [
+        "lem:prime-certificate"
+      ]
+    },
+    {
+      "file": "GeneralizedGoldbach/FactorCertificate.lean",
+      "name": "factorization_sound",
+      "labels": [
+        "lem:factor-certificate",
+        "eq:factor-certificate"
+      ]
+    },
+    {
+      "file": "GeneralizedGoldbach/FactorCertificate.lean",
+      "name": "g_of_certificate",
+      "labels": [
+        "lem:factor-certificate",
+        "eq:factor-sign"
+      ]
+    },
+    {
+      "file": "GeneralizedGoldbach/FiniteClosure.lean",
+      "name": "finite_witness_exists",
+      "labels": [
+        "prop:finite-witnesses",
+        "prop:csv-certification"
+      ]
+    },
+    {
+      "file": "GeneralizedGoldbach/FiniteClosure.lean",
+      "name": "four_patterns_of_finite_candidate",
+      "labels": [
+        "prop:finite-witnesses"
+      ]
+    },
+    {
+      "file": "GeneralizedGoldbach/FiniteClosureBasic.lean",
+      "name": "candidate_multiplier_bounds",
+      "labels": [
+        "eq:candidate-bounds"
+      ]
+    },
+    {
+      "file": "GeneralizedGoldbach/FiniteClosureBasic.lean",
+      "name": "explicitRepresentation_implies_representation",
+      "labels": [
+        "lem:formal-count"
+      ]
+    },
+    {
+      "file": "GeneralizedGoldbach/FiniteClosureBasic.lean",
+      "name": "finite_candidate_iff_least",
+      "labels": [
+        "prop:finite-candidates"
+      ]
+    },
+    {
+      "file": "GeneralizedGoldbach/FiniteClosureBasic.lean",
+      "name": "finite_candidate_iff_multiplier",
+      "labels": [
+        "prop:finite-candidates",
+        "eq:finite-candidate"
+      ]
+    },
+    {
+      "file": "GeneralizedGoldbach/FiniteClosureBasic.lean",
+      "name": "mem_candidatePairs_iff",
+      "labels": [
+        "prop:finite-candidates"
+      ]
+    },
+    {
+      "file": "GeneralizedGoldbach/FiniteClosureBasic.lean",
+      "name": "candidate_multiplier_count",
+      "labels": [
+        "prop:candidate-count",
+        "eq:candidate-count"
+      ]
+    },
+    {
+      "file": "GeneralizedGoldbach/FiniteClosureBasic.lean",
+      "name": "candidate_count_and_bound",
+      "labels": [
+        "prop:candidate-count",
+        "tab:finite-candidates"
+      ]
+    },
+    {
+      "file": "GeneralizedGoldbach/FiniteClosureBasic.lean",
+      "name": "four_patterns_of_finite_witness",
+      "labels": [
+        "prop:finite-witnesses",
+        "eq:csv-signs"
+      ]
+    },
+    {
+      "file": "GeneralizedGoldbach/FourDecompositions.lean",
+      "name": "four_decomposition_congruences",
+      "labels": [
+        "lem:four-decompositions",
+        "eq:four-prime-relations"
+      ]
+    },
+    {
+      "file": "GeneralizedGoldbach/FourDecompositions.lean",
+      "name": "exists_four_decomposition",
+      "labels": [
+        "lem:four-decompositions",
+        "eq:four-decompositions"
+      ]
+    },
+    {
+      "file": "GeneralizedGoldbach/FourDecompositions.lean",
+      "name": "four_decomposition_formulas",
+      "labels": [
+        "eq:four-formulas"
+      ]
+    },
+    {
+      "file": "GeneralizedGoldbach/FourDecompositions.lean",
+      "name": "four_decomposition_prime_relations",
+      "labels": [
+        "eq:four-prime-relations"
+      ]
+    },
+    {
+      "file": "GeneralizedGoldbach/FullCertificateKernel.lean",
+      "name": "factors_sound",
+      "labels": [
+        "lem:factor-certificate",
+        "eq:factor-certificate"
+      ]
+    },
+    {
+      "file": "GeneralizedGoldbach/FullCertificateKernel.lean",
+      "name": "g_of_factors",
+      "labels": [
+        "eq:factor-sign"
+      ]
+    },
+    {
+      "file": "GeneralizedGoldbach/FullCertificateKernel.lean",
+      "name": "point_sound",
+      "labels": [
+        "lem:numeric-chain",
+        "eq:factor-sign"
+      ]
+    },
+    {
+      "file": "GeneralizedGoldbach/FullCertificateKernel.lean",
+      "name": "intervalChain_of_factored",
+      "labels": [
+        "lem:numeric-chain"
+      ]
+    },
+    {
+      "file": "GeneralizedGoldbach/FullCertificateKernel.lean",
+      "name": "signKey_properties",
+      "labels": [
+        "prop:uniform-certification"
+      ]
+    },
+    {
+      "file": "GeneralizedGoldbach/FullCertificateKernel.lean",
+      "name": "oddEntry_sound",
+      "labels": [
+        "prop:uniform-certification",
+        "eq:uniform-odd-data"
+      ]
+    },
+    {
+      "file": "GeneralizedGoldbach/FullCertificateKernel.lean",
+      "name": "natRepresentation_sound",
+      "labels": [
+        "prop:csv-certification",
+        "eq:csv-signs"
+      ]
+    },
+    {
+      "file": "GeneralizedGoldbach/FullCertificateKernel.lean",
+      "name": "uniformOdd_of_table",
+      "labels": [
+        "prop:uniform-certification",
+        "eq:uniform-odd-data"
+      ]
+    },
+    {
+      "file": "GeneralizedGoldbach/FullCertificateKernel.lean",
+      "name": "uniformEven_of_table",
+      "labels": [
+        "prop:uniform-certification",
+        "eq:uniform-even-data"
+      ]
+    },
+    {
+      "file": "GeneralizedGoldbach/FullCertificateKernel.lean",
+      "name": "finiteWitness_of_table",
+      "labels": [
+        "prop:csv-certification"
+      ]
+    },
+    {
+      "file": "GeneralizedGoldbach/FullCertificateKernel.lean",
+      "name": "auxiliaryPrimeSet_cases",
+      "labels": [
+        "prop:uniform-certification",
+        "eq:uniform-parameters"
+      ]
+    },
+    {
+      "file": "GeneralizedGoldbach/IntervalChains.lean",
+      "name": "interval_chain_covers_index",
+      "labels": [
+        "def:interval-chain",
+        "eq:chain-conditions"
+      ]
+    },
+    {
+      "file": "GeneralizedGoldbach/IntervalChains.lean",
+      "name": "interval_chain_covers",
+      "labels": [
+        "def:interval-chain",
+        "eq:chain-conditions"
+      ]
+    },
+    {
+      "file": "GeneralizedGoldbach/IntervalChains.lean",
+      "name": "exists_scaling_exponent",
+      "labels": [
+        "eq:scaling-exponent"
+      ]
+    },
+    {
+      "file": "GeneralizedGoldbach/IntervalChains.lean",
+      "name": "inverseClosed_pow",
+      "labels": [
+        "lem:chain-scaling"
+      ]
+    },
+    {
+      "file": "GeneralizedGoldbach/IntervalChains.lean",
+      "name": "scaling_chain_extension",
+      "labels": [
+        "lem:chain-scaling",
+        "eq:scaled-point"
+      ]
+    },
+    {
+      "file": "GeneralizedGoldbach/Main.lean",
+      "name": "least_prime_cases",
+      "labels": [
+        "sec:finite",
+        "prop:small-primes",
+        "prop:large-tail"
+      ]
+    },
+    {
+      "file": "GeneralizedGoldbach/Main.lean",
+      "name": "four_patterns_main",
+      "labels": [
+        "thm:main",
+        "sec:finite"
+      ]
+    },
+    {
+      "file": "GeneralizedGoldbach/Main.lean",
+      "name": "four_patterns_main_expanded",
+      "labels": [
+        "thm:main",
+        "eq:main"
+      ]
+    },
+    {
+      "file": "GeneralizedGoldbach/Main.lean",
+      "name": "representationCount_main",
+      "labels": [
+        "thm:main",
+        "eq:representation-count"
+      ]
+    },
+    {
+      "file": "GeneralizedGoldbach/Main.lean",
+      "name": "generalized_goldbach",
+      "labels": [
+        "cor:negative-negative"
+      ]
+    },
+    {
+      "file": "GeneralizedGoldbach/PrimeTail.lean",
+      "name": "prime_product_bound_step",
+      "labels": [
+        "lem:nagura-product",
+        "eq:nagura-step"
+      ]
+    },
+    {
+      "file": "GeneralizedGoldbach/PrimeTail.lean",
+      "name": "prime_product_bound",
+      "labels": [
+        "lem:nagura-product",
+        "prop:bertrand-product"
+      ]
+    },
+    {
+      "file": "GeneralizedGoldbach/PrimeTail.lean",
+      "name": "sufficient_bound_lt_polynomial",
+      "labels": [
+        "eq:nagura-polynomial"
+      ]
+    },
+    {
+      "file": "GeneralizedGoldbach/PrimeTail.lean",
+      "name": "four_patterns_of_large_least_prime",
+      "labels": [
+        "prop:large-tail",
+        "thm:bertrand-tail"
+      ]
+    },
+    {
+      "file": "GeneralizedGoldbach/PrimeTailBasic.lean",
+      "name": "exists_next_prime",
+      "labels": [
+        "lem:nagura-product",
+        "lem:bertrand-step"
+      ]
+    },
+    {
+      "file": "GeneralizedGoldbach/PrimeTailBasic.lean",
+      "name": "odd_prime_product_next",
+      "labels": [
+        "eq:nagura-step",
+        "eq:bertrand-step"
+      ]
+    },
+    {
+      "file": "GeneralizedGoldbach/PrimeTailBasic.lean",
+      "name": "prime_tail_base_cases",
+      "labels": [
+        "lem:tail-base-cases",
+        "eq:tail-base-cases"
+      ]
+    },
+    {
+      "file": "GeneralizedGoldbach/Rigidity.lean",
+      "name": "even_modulus_half",
+      "labels": [
+        "prop:even-rigidity",
+        "eq:even-quotient"
+      ]
+    },
+    {
+      "file": "GeneralizedGoldbach/Rigidity.lean",
+      "name": "odd_parameter_crt",
+      "labels": [
+        "lem:formal-crt"
+      ]
+    },
+    {
+      "file": "GeneralizedGoldbach/Rigidity.lean",
+      "name": "even_residue_properties",
+      "labels": [
+        "prop:even-rigidity",
+        "eq:even-parameter"
+      ]
+    },
+    {
+      "file": "GeneralizedGoldbach/Rigidity.lean",
+      "name": "even_parameter_quotient",
+      "labels": [
+        "eq:even-quotient"
+      ]
+    },
+    {
+      "file": "GeneralizedGoldbach/Rigidity.lean",
+      "name": "odd_sign_table",
+      "labels": [
+        "prop:odd-rigidity",
+        "eq:odd-sign-table"
+      ]
+    },
+    {
+      "file": "GeneralizedGoldbach/Rigidity.lean",
+      "name": "four_decomposition_representations",
+      "labels": [
+        "lem:four-decompositions",
+        "eq:four-decompositions"
+      ]
+    },
+    {
+      "file": "GeneralizedGoldbach/Rigidity.lean",
+      "name": "even_sign_table",
+      "labels": [
+        "prop:even-rigidity",
+        "eq:even-sign-table"
+      ]
+    },
+    {
+      "file": "GeneralizedGoldbach/Rigidity.lean",
+      "name": "odd_missing_pattern_rigidity",
+      "labels": [
+        "prop:odd-rigidity"
+      ]
+    },
+    {
+      "file": "GeneralizedGoldbach/Rigidity.lean",
+      "name": "even_missing_pattern_rigidity",
+      "labels": [
+        "prop:even-rigidity"
+      ]
+    },
+    {
+      "file": "GeneralizedGoldbach/Rigidity.lean",
+      "name": "mixed_patterns_of_odd_parameter",
+      "labels": [
+        "prop:odd-rigidity"
+      ]
+    },
+    {
+      "file": "GeneralizedGoldbach/Rigidity.lean",
+      "name": "mixed_patterns_of_even_parameter",
+      "labels": [
+        "prop:even-rigidity"
+      ]
+    },
+    {
+      "file": "GeneralizedGoldbach/Rigidity.lean",
+      "name": "four_patterns_of_odd_parameters",
+      "labels": [
+        "cor:parameters-four"
+      ]
+    },
+    {
+      "file": "GeneralizedGoldbach/Rigidity.lean",
+      "name": "four_patterns_of_even_parameters",
+      "labels": [
+        "cor:parameters-four"
+      ]
+    },
+    {
+      "file": "GeneralizedGoldbach/SharedPrimeCertificate.lean",
+      "name": "prime_node_valid",
+      "labels": [
+        "lem:prime-certificate"
+      ]
+    },
+    {
+      "file": "GeneralizedGoldbach/SharedPrimeCertificate.lean",
+      "name": "prime_of_contains",
+      "labels": [
+        "lem:prime-certificate"
+      ]
+    },
+    {
+      "file": "GeneralizedGoldbach/SharedPrimeCertificate.lean",
+      "name": "primeTest_sound",
+      "labels": [
+        "lem:prime-certificate"
+      ]
+    },
+    {
+      "file": "GeneralizedGoldbach/SmallPrimes.lean",
+      "name": "q3_certificates",
+      "labels": [
+        "prop:q3-q5",
+        "eq:q3-odd-witnesses"
+      ]
+    },
+    {
+      "file": "GeneralizedGoldbach/SmallPrimes.lean",
+      "name": "q5_certificates",
+      "labels": [
+        "prop:q3-q5"
+      ]
+    },
+    {
+      "file": "GeneralizedGoldbach/SmallPrimes.lean",
+      "name": "q7_certificates",
+      "labels": [
+        "prop:q7"
+      ]
+    },
+    {
+      "file": "GeneralizedGoldbach/SmallPrimes.lean",
+      "name": "q7_exception_classification",
+      "labels": [
+        "lem:q7-exceptions"
+      ]
+    },
+    {
+      "file": "GeneralizedGoldbach/SmallPrimes.lean",
+      "name": "q7_exception_positive_positive",
+      "labels": [
+        "lem:q7-exceptions",
+        "eq:q7-exception-decompositions"
+      ]
+    },
+    {
+      "file": "GeneralizedGoldbach/SmallPrimes.lean",
+      "name": "four_patterns_of_small_certificates",
+      "labels": [
+        "prop:q3-q5",
+        "lem:chain-scaling"
+      ]
+    },
+    {
+      "file": "GeneralizedGoldbach/SmallPrimes.lean",
+      "name": "four_patterns_of_q3",
+      "labels": [
+        "prop:q3-q5"
+      ]
+    },
+    {
+      "file": "GeneralizedGoldbach/SmallPrimes.lean",
+      "name": "four_patterns_of_q5",
+      "labels": [
+        "prop:q3-q5"
+      ]
+    },
+    {
+      "file": "GeneralizedGoldbach/SmallPrimes.lean",
+      "name": "four_patterns_of_q7",
+      "labels": [
+        "prop:q7"
+      ]
+    },
+    {
+      "file": "GeneralizedGoldbach/SmallPrimes.lean",
+      "name": "four_patterns_of_small_least_prime",
+      "labels": [
+        "prop:small-primes"
+      ]
+    },
+    {
+      "file": "GeneralizedGoldbach/Statements.lean",
+      "name": "representationCount_pos_iff",
+      "labels": [
+        "lem:formal-count",
+        "eq:representation-count"
+      ]
+    },
+    {
+      "file": "GeneralizedGoldbach/Statements.lean",
+      "name": "representation_swap",
+      "labels": [
+        "lem:formal-count"
+      ]
+    },
+    {
+      "file": "GeneralizedGoldbach/SufficientBound.lean",
+      "name": "odd_gap_of_sufficient_bound",
+      "labels": [
+        "prop:sufficient-bound",
+        "eq:odd-gap-bound"
+      ]
+    },
+    {
+      "file": "GeneralizedGoldbach/SufficientBound.lean",
+      "name": "even_gap_of_sufficient_bound",
+      "labels": [
+        "prop:sufficient-bound",
+        "eq:even-gap-bound"
+      ]
+    },
+    {
+      "file": "GeneralizedGoldbach/SufficientBound.lean",
+      "name": "four_patterns_of_sufficient_bound",
+      "labels": [
+        "prop:sufficient-bound",
+        "eq:sufficient-bound"
+      ]
+    },
+    {
+      "file": "GeneralizedGoldbach/ThreePoint.lean",
+      "name": "three_term_sign_identity",
+      "labels": [
+        "lem:three-term",
+        "eq:three-term"
+      ]
+    },
+    {
+      "file": "GeneralizedGoldbach/ThreePoint.lean",
+      "name": "exists_progression_point",
+      "labels": [
+        "lem:three-point"
+      ]
+    },
+    {
+      "file": "GeneralizedGoldbach/ThreePoint.lean",
+      "name": "three_point_square_class",
+      "labels": [
+        "lem:three-point",
+        "eq:square-class-condition"
+      ]
+    },
+    {
+      "file": "GeneralizedGoldbach/ThreePoint.lean",
+      "name": "exists_small_representative_avoiding_prime",
+      "labels": [
+        "lem:small-representative",
+        "eq:small-representative"
+      ]
+    },
+    {
+      "file": "GeneralizedGoldbach/ThreePoint.lean",
+      "name": "two_signs_of_sqrt_gap",
+      "labels": [
+        "lem:two-signs-gap",
+        "eq:two-signs-gap"
+      ]
+    }
+  ],
+  "comment_references": 343
+}

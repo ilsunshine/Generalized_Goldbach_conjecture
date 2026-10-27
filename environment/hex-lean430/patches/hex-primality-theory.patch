@@ -1,0 +1,60 @@
+--- a/HexPrimalityTheory/Prime.lean
++++ b/HexPrimalityTheory/Prime.lean
+@@ -8,6 +8,7 @@
+ 
+ public import HexPrimality
+ public import Mathlib.Data.Nat.Prime.Basic
++public import Mathlib.Data.Nat.Sqrt
+ 
+ public section
+ 
+@@ -69,3 +70,26 @@
+ end Nat
+ 
+ end Hex
++
++namespace HexArith.Nat
++
++/-- The Newton implementation agrees with Lean's natural square root. -/
++theorem floorSqrt_eq (n : Nat) : floorSqrt n = _root_.Nat.sqrt n := by
++  have hlo := floorSqrt_sq_le n
++  have hhi := lt_floorSqrt_succ n
++  have hslo := _root_.Nat.sqrt_le n
++  have hshi := _root_.Nat.lt_succ_sqrt n
++  simp only [_root_.Nat.pow_two, _root_.Nat.succ_eq_add_one] at hhi hshi
++  apply _root_.Nat.le_antisymm
++  · by_cases h : floorSqrt n ≤ _root_.Nat.sqrt n
++    · exact h
++    have hle : _root_.Nat.sqrt n + 1 ≤ floorSqrt n := by omega
++    have hsq := _root_.Nat.mul_self_le_mul_self hle
++    omega
++  · by_cases h : _root_.Nat.sqrt n ≤ floorSqrt n
++    · exact h
++    have hle : floorSqrt n + 1 ≤ _root_.Nat.sqrt n := by omega
++    have hsq := _root_.Nat.mul_self_le_mul_self hle
++    omega
++
++end HexArith.Nat
+--- a/lakefile.toml
++++ b/lakefile.toml
+@@ -8,13 +8,12 @@
+ 
+ [[require]]
+ name = "HexPrimality"
+-git = "https://github.com/leanprover/hex-primality.git"
+-rev = "v0.10.0"
++path = "../hex-primality"
+ 
+ [[require]]
+ name = "mathlib"
+ git = "https://github.com/leanprover-community/mathlib4.git"
+-rev = "6b7abb3c7686292736be2955bd3eb9ebf63b456a"
++rev = "c5ea00351c28e24afc9f0f84379aa41082b1188f"
+ 
+ [[lean_lib]]
+ name = "HexPrimalityTheory"
+--- a/lean-toolchain
++++ b/lean-toolchain
+@@ -1 +1 @@
+-leanprover/lean4:v4.35.0-rc3
++leanprover/lean4:v4.30.0

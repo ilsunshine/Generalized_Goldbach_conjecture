@@ -1,0 +1,31 @@
+name = "generalized_goldbach_elementary"
+version = "0.1.0"
+defaultTargets = ["GeneralizedGoldbach"]
+
+[leanOptions]
+autoImplicit = false
+relaxedAutoImplicit = false
+
+[[require]]
+name = "mathlib"
+git = "https://github.com/leanprover-community/mathlib4.git"
+rev = "c5ea00351c28e24afc9f0f84379aa41082b1188f"
+
+[[require]]
+name = "HexBasic"
+path = "third_party/hex-lean430/hex-basic"
+
+[[require]]
+name = "HexArith"
+path = "third_party/hex-lean430/hex-arith"
+
+[[require]]
+name = "HexPrimality"
+path = "third_party/hex-lean430/hex-primality"
+
+[[require]]
+name = "HexPrimalityTheory"
+path = "third_party/hex-lean430/hex-primality-theory"
+
+[[lean_lib]]
+name = "GeneralizedGoldbach"

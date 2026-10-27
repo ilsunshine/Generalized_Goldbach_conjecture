@@ -1,0 +1,120 @@
+--- a/HexBasic/ExtTreeMap.lean
++++ b/HexBasic/ExtTreeMap.lean
+@@ -121,7 +121,7 @@
+   | nil => rfl
+   | cons entry entries ih =>
+       rw [List.foldl_cons, ih]
+-      · rw [getElem?_alter, ite_eq_right (h entry (by simp))]
++      · rw [getElem?_alter, if_neg (h entry (by simp))]
+       · intro later hlater
+         exact h later (by simp [hlater])
+ 
+@@ -149,7 +149,7 @@
+           apply hpair.1 later hlater
+           simp [hkey]
+       · rw [List.foldl_cons, ih (out := out.alter entry.1 (update entry.1 entry.2))
+-          hpair.2 hmem, getElem?_alter, ite_eq_right (hpair.1 (key, value) hmem)]
++          hpair.2 hmem, getElem?_alter, if_neg (hpair.1 (key, value) hmem)]
+ 
+ private theorem getElem?_foldl_alter [TransCmp cmp] [LawfulEqCmp cmp]
+     (source : ExtTreeMap α γ cmp) (out : ExtTreeMap α β cmp)
+--- a/HexBasic/Fold.lean
++++ b/HexBasic/Fold.lean
+@@ -395,13 +395,13 @@
+     simp only [List.foldl_cons]
+     by_cases hxq : x = q
+     · subst hxq
+-      rw [ite_eq_left rfl]
++      rw [if_pos rfl]
+       have hxs_nomem : x ∉ xs := (List.nodup_cons.mp hnodup).1
+       apply foldl_add_eq_self xs (fun y => if y = x then f y else 0) (z + f x)
+       intro y hy
+       have hyne : y ≠ x := fun heq => hxs_nomem (heq ▸ hy)
+-      exact ite_eq_right hyne
+-    · rw [ite_eq_right hxq]
++      exact if_neg hyne
++    · rw [if_neg hxq]
+       have hzero_step : z + (0 : R) = z := by grind
+       rw [hzero_step]
+       have hmem' : q ∈ xs := by
+@@ -501,13 +501,13 @@
+     simp only [List.foldl_cons]
+     by_cases hxq : x = q
+     · subst hxq
+-      rw [ite_eq_left rfl]
++      rw [if_pos rfl]
+       have hxs_nomem : x ∉ xs := (List.nodup_cons.mp hnodup).1
+       apply foldl_mul_eq_self xs (fun y => if y = x then f y else 1) (z * f x)
+       intro y hy
+       have hyne : y ≠ x := fun heq => hxs_nomem (heq ▸ hy)
+-      exact ite_eq_right hyne
+-    · rw [ite_eq_right hxq, Lean.Grind.Semiring.mul_one]
++      exact if_neg hyne
++    · rw [if_neg hxq, Lean.Grind.Semiring.mul_one]
+       have hmem' : q ∈ xs := by
+         cases List.mem_cons.mp hmem with
+         | inl h => exact absurd h.symm hxq
+--- a/HexBasic/Kernel.lean
++++ b/HexBasic/Kernel.lean
+@@ -39,9 +39,9 @@
+ theorem cond_beq {α : Type} (a b : Nat) (x y : α) :
+     cond (Nat.beq a b) x y = if a = b then x else y := by
+   rcases hb : Nat.beq a b with _ | _
+-  · rw [ite_eq_right (Nat.ne_of_beq_eq_false hb)]
++  · rw [if_neg (Nat.ne_of_beq_eq_false hb)]
+     rfl
+-  · rw [ite_eq_left (Nat.eq_of_beq_eq_true hb)]
++  · rw [if_pos (Nat.eq_of_beq_eq_true hb)]
+     rfl
+ 
+ theorem cond_blt {α : Type} (a b : Nat) (x y : α) :
+--- a/HexBasic/Rand.lean
++++ b/HexBasic/Rand.lean
+@@ -101,10 +101,10 @@
+       intro attempts r v r' h
+       unfold Rand.natGo at h
+       by_cases hc : (Rand.words r w).1 < limit
+-      · simp only [hc, ite_eq_left] at h
++      · simp only [hc, if_pos] at h
+         cases h
+         exact Nat.mod_lt _ hb
+-      · simp only [hc, ite_eq_right, not_false_iff] at h
++      · simp only [hc, if_neg, not_false_iff] at h
+         exact ih (attempts + 1) (Rand.words r w).2 h
+ 
+ /-- Range correctness: a successful bounded draw is below the bound. -/
+@@ -112,9 +112,9 @@
+     (h : Rand.nat r bound fuel = .ok (v, r')) : v < bound := by
+   unfold Rand.nat at h
+   by_cases hb : bound = 0
+-  · rw [ite_eq_left hb] at h
++  · rw [if_pos hb] at h
+     cases h
+-  · rw [ite_eq_right hb] at h
++  · rw [if_neg hb] at h
+     exact Rand.natGo_lt (Nat.pos_of_ne_zero hb) fuel 0 r h
+ 
+ /-! Regression coverage: the canonical splitmix64 known-answer values (the
+--- a/HexBasic/Vector/Modify.lean
++++ b/HexBasic/Vector/Modify.lean
+@@ -38,13 +38,13 @@
+ /-- The modified index of `modify` reads back `f` applied to the old value. -/
+ theorem getElem_modify_self {xs : Vector α n} {i : Nat} {f : α → α} (hi : i < n) :
+     (xs.modify i f)[i] = f xs[i] := by
+-  rw [getElem_modify hi, ite_eq_left rfl]
++  rw [getElem_modify hi, if_pos rfl]
+ 
+ /-- Any index other than the modified one is unchanged by `modify`. -/
+ theorem getElem_modify_of_ne {xs : Vector α n} {i j : Nat} {f : α → α}
+     (hj : j < n) (h : i ≠ j) :
+     (xs.modify i f)[j] = xs[j] := by
+-  rw [getElem_modify hj, ite_eq_right h]
++  rw [getElem_modify hj, if_neg h]
+ 
+ /-- `modify` agrees with the read-then-{name}`set` form (value-level; `modify` avoids
+ the copy this form would force). -/
+--- a/lean-toolchain
++++ b/lean-toolchain
+@@ -1 +1 @@
+-leanprover/lean4:v4.35.0-rc3
++leanprover/lean4:v4.30.0

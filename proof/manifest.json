@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "origin": "CSV copies/exports of independently rebuilt certificates; not missing original attachments",
+  "source_inputs": {
+    "rebuilt_finite.csv": "bb0521f1aeca1858466259e5e67db82f3e236a199d1ee817a1dd4c02a9339ac4",
+    "rebuilt_small.json": "4cf5e43c35765b0300c6a1dce8ee2dcd30255617870694b46475a56d3f4c3390",
+    "rebuilt_uniform.json.gz": "11d625aca1fadb45ca47612efc59ee69c4cddd356dc0d0e7511b516eb68b0829"
+  },
+  "sha256": {
+    "paper.pdf": "44ba14d4465c792b6168f23ebb8d43bbb950a0203e84333111706d3d81c90fd4",
+    "data/finite_witnesses.csv": "bb0521f1aeca1858466259e5e67db82f3e236a199d1ee817a1dd4c02a9339ac4",
+    "data/small_even_chains.csv": "e6bf33626ca5558eb065174e312f8028b43a8429a7118bbd60eaa4c6b7df2b3a",
+    "data/small_odd_witnesses.csv": "b212abda0af198a3b34fbdec0b115735cb6b2564d8417fa778b6e69208432ef4",
+    "data/uniform_even_chains.csv": "03254607ffdbffe6c8412d9048676dfb9574ef529434d619f45c8d5ef55a241a",
+    "data/uniform_odd_witnesses.csv": "72d031100f8a4dd7b948dfb3280a71e0ddb0ed211a3b1928324c3679b1bb24c7",
+    "data/uniform_parameters.csv": "3f79ff4a5a1d4d63cfb00bcce823494a5f42aaeb66512c925ad577b3c7acbf18"
+  },
+  "counts": {
+    "uniform_chains": 31672,
+    "uniform_chain_points": 1770208,
+    "uniform_odd_witnesses": 32492,
+    "small_chains": 184,
+    "small_chain_points": 2203,
+    "small_odd_witnesses": 136,
+    "finite_rows": 149753,
+    "finite_decompositions": 449259
+  }
+}

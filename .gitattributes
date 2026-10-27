@@ -1,0 +1,9 @@
+# These files are pinned by byte hashes. Preserve their exact line endings.
+* whitespace=cr-at-eol
+/environment/hex-lean430/patches/** -whitespace
+/GeneralizedGoldbach/LargeCertificates/** -text
+/environment/hex-lean430/** -text
+/certificates/** -text
+/proof/data/** -text
+/checks/original-statements.json -text
+*.pdf binary

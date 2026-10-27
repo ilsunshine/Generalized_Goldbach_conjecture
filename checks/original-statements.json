@@ -1,0 +1,382 @@
+[
+  {
+    "name": "exists_least_missing_odd_prime",
+    "file": "GeneralizedGoldbach\\AuxiliaryPrime.lean",
+    "statement": "theorem exists_least_missing_odd_prime (N : ℕ) (hN : 0 < N) :\n    ∃ q : ℕ, IsLeastMissingOddPrime N q"
+  },
+  {
+    "name": "least_missing_implies_admissible",
+    "file": "GeneralizedGoldbach\\AuxiliaryPrime.lean",
+    "statement": "theorem least_missing_implies_admissible (N q : ℕ)\n    (h : IsLeastMissingOddPrime N q) : AdmissibleAuxiliaryPrime N q"
+  },
+  {
+    "name": "least_missing_product_dvd",
+    "file": "GeneralizedGoldbach\\AuxiliaryPrime.lean",
+    "statement": "theorem least_missing_product_dvd (N q : ℕ)\n    (h : IsLeastMissingOddPrime N q) : oddPrimeProduct q ∣ N"
+  },
+  {
+    "name": "auxiliary_arithmetic",
+    "file": "GeneralizedGoldbach\\AuxiliaryPrime.lean",
+    "statement": "theorem auxiliary_arithmetic (N q : ℕ) (h : AdmissibleAuxiliaryPrime N q) :\n    3 ≤ q ∧ 0 < auxT q ∧ Even (auxT q) ∧ 0 < auxD q ∧\n      Even (auxD q) ∧ Odd (auxD q / 2) ∧ auxD q ∣ auxT q ∧\n      Nat.Coprime (auxD q) q"
+  },
+  {
+    "name": "auxiliary_radical_dvd_even",
+    "file": "GeneralizedGoldbach\\AuxiliaryPrime.lean",
+    "statement": "theorem auxiliary_radical_dvd_even (N q : ℕ) (h : AdmissibleAuxiliaryPrime N q)\n    (heven : Even N) : auxD q ∣ N"
+  },
+  {
+    "name": "g_eq_one_or_neg_one",
+    "file": "GeneralizedGoldbach\\Basic.lean",
+    "statement": "theorem g_eq_one_or_neg_one (n : ℕ) : g n = 1 ∨ g n = -1"
+  },
+  {
+    "name": "g_eq_neg_one_iff",
+    "file": "GeneralizedGoldbach\\Basic.lean",
+    "statement": "theorem g_eq_neg_one_iff (n : ℕ) : g n = -1 ↔ Odd (omega n)"
+  },
+  {
+    "name": "g_mul_of_coprime",
+    "file": "GeneralizedGoldbach\\Basic.lean",
+    "statement": "theorem g_mul_of_coprime (a b : ℕ) (ha : 0 < a) (hb : 0 < b)\n    (hcop : Nat.Coprime a b) : g (a * b) = g a * g b"
+  },
+  {
+    "name": "g_prime_mul_of_not_dvd",
+    "file": "GeneralizedGoldbach\\Basic.lean",
+    "statement": "theorem g_prime_mul_of_not_dvd (p n : ℕ) (hp : Nat.Prime p) (hn : 0 < n)\n    (hpn : ¬ p ∣ n) : g (p * n) = -g n"
+  },
+  {
+    "name": "g_prime_mul_of_dvd",
+    "file": "GeneralizedGoldbach\\Basic.lean",
+    "statement": "theorem g_prime_mul_of_dvd (p n : ℕ) (hp : Nat.Prime p) (hn : 0 < n)\n    (hpn : p ∣ n) : g (p * n) = g n"
+  },
+  {
+    "name": "g_pow",
+    "file": "GeneralizedGoldbach\\Basic.lean",
+    "statement": "theorem g_pow (n k : ℕ) (hn : 0 < n) (hk : 0 < k) : g (n ^ k) = g n"
+  },
+  {
+    "name": "g_prime_pow_mul_of_dvd",
+    "file": "GeneralizedGoldbach\\Basic.lean",
+    "statement": "theorem g_prime_pow_mul_of_dvd (p n k : ℕ) (hp : Nat.Prime p) (hn : 0 < n)\n    (hpn : p ∣ n) : g (p ^ k * n) = g n"
+  },
+  {
+    "name": "g_prime_sq_mul",
+    "file": "GeneralizedGoldbach\\Basic.lean",
+    "statement": "theorem g_prime_sq_mul (p n : ℕ) (hp : Nat.Prime p) (hn : 0 < n) :\n    g (p ^ 2 * n) = g (p * n)"
+  },
+  {
+    "name": "rad_pos_squarefree_dvd",
+    "file": "GeneralizedGoldbach\\Basic.lean",
+    "statement": "theorem rad_pos_squarefree_dvd (n : ℕ) (hn : 0 < n) :\n    0 < rad n ∧ Squarefree (rad n) ∧ rad n ∣ n ∧ rad n ≤ n"
+  },
+  {
+    "name": "prime_dvd_rad_iff",
+    "file": "GeneralizedGoldbach\\Basic.lean",
+    "statement": "theorem prime_dvd_rad_iff (p n : ℕ) (hp : Nat.Prime p) (hn : 0 < n) :\n    p ∣ rad n ↔ p ∣ n"
+  },
+  {
+    "name": "uniform_certificate_exists",
+    "file": "GeneralizedGoldbach\\Certificates.lean",
+    "statement": "theorem uniform_certificate_exists (q : ℕ) (hq : q ∈ auxiliaryPrimeSet) :\n    UniformCertificate q"
+  },
+  {
+    "name": "eligible_residues_inverse_closed",
+    "file": "GeneralizedGoldbach\\Certificates.lean",
+    "statement": "theorem eligible_residues_inverse_closed (q ell : ℕ) (hq : Nat.Prime q)\n    (hodd : Odd q) (hcop : Nat.Coprime ell (evenModulus q)) :\n    InverseClosed (evenModulus q) ell (eligibleResidues q (evenModulus q) (auxD q))"
+  },
+  {
+    "name": "four_patterns_of_uniform_certificate",
+    "file": "GeneralizedGoldbach\\Certificates.lean",
+    "statement": "theorem four_patterns_of_uniform_certificate (N q : ℕ)\n    (hH : AdmissibleAuxiliaryPrime N q) (hcert : UniformCertificate q)\n    (hsize : uniformThreshold q ≤ N) : FourPatternsAt N"
+  },
+  {
+    "name": "four_patterns_of_uniform_threshold",
+    "file": "GeneralizedGoldbach\\Certificates.lean",
+    "statement": "theorem four_patterns_of_uniform_threshold (N q : ℕ)\n    (hH : AdmissibleAuxiliaryPrime N q) (hq : q ∈ auxiliaryPrimeSet)\n    (hsize : uniformThreshold q ≤ N) : FourPatternsAt N"
+  },
+  {
+    "name": "finite_candidate_iff_least",
+    "file": "GeneralizedGoldbach\\FiniteClosure.lean",
+    "statement": "theorem finite_candidate_iff_least (N q : ℕ) (hq : q ∈ auxiliaryPrimeSet)\n    (hN : mainThreshold ≤ N) (hsize : N < uniformThreshold q) :\n    FiniteCandidate N q ↔ IsLeastMissingOddPrime N q"
+  },
+  {
+    "name": "finite_candidate_iff_multiplier",
+    "file": "GeneralizedGoldbach\\FiniteClosure.lean",
+    "statement": "theorem finite_candidate_iff_multiplier (N q : ℕ) :\n    FiniteCandidate N q ↔ q ∈ auxiliaryPrimeSet ∧\n      ∃ k ∈ candidateMultipliers q, N = oddPrimeProduct q * k"
+  },
+  {
+    "name": "mem_candidatePairs_iff",
+    "file": "GeneralizedGoldbach\\FiniteClosure.lean",
+    "statement": "theorem mem_candidatePairs_iff (N q : ℕ) :\n    (N, q) ∈ candidatePairs ↔ FiniteCandidate N q"
+  },
+  {
+    "name": "candidate_multiplier_count",
+    "file": "GeneralizedGoldbach\\FiniteClosure.lean",
+    "statement": "theorem candidate_multiplier_count (q : ℕ) (hq : q ∈ auxiliaryPrimeSet) :\n    (candidateMultipliers q).card =\n      if candidateLower q ≤ candidateUpper q then\n        (candidateUpper q - candidateLower q + 1) -\n          (candidateUpper q / q - (candidateLower q - 1) / q)\n      else 0"
+  },
+  {
+    "name": "candidate_count_and_bound",
+    "file": "GeneralizedGoldbach\\FiniteClosure.lean",
+    "statement": "theorem candidate_count_and_bound :\n    candidatePairs.card = 149753 ∧\n      (∀ N q : ℕ, FiniteCandidate N q → N ≤ 3234846615) ∧\n      FiniteCandidate 3234846615 31"
+  },
+  {
+    "name": "finite_witness_exists",
+    "file": "GeneralizedGoldbach\\FiniteClosure.lean",
+    "statement": "theorem finite_witness_exists (N q : ℕ) (h : FiniteCandidate N q) :\n    Nonempty (FiniteWitness N)"
+  },
+  {
+    "name": "four_patterns_of_finite_witness",
+    "file": "GeneralizedGoldbach\\FiniteClosure.lean",
+    "statement": "theorem four_patterns_of_finite_witness (N : ℕ) (W : FiniteWitness N) :\n    FourPatternsAt N"
+  },
+  {
+    "name": "four_patterns_of_finite_candidate",
+    "file": "GeneralizedGoldbach\\FiniteClosure.lean",
+    "statement": "theorem four_patterns_of_finite_candidate (N q : ℕ) (h : FiniteCandidate N q) :\n    FourPatternsAt N"
+  },
+  {
+    "name": "exists_four_decomposition",
+    "file": "GeneralizedGoldbach\\FourDecompositions.lean",
+    "statement": "theorem exists_four_decomposition (N q A : ℕ) (hq : Nat.Prime q)\n    (hodd : Odd q) (hqN : ¬ q ∣ N) (hA : FourDecompositionParameter N q A) :\n    Nonempty (FourDecomposition N q A)"
+  },
+  {
+    "name": "four_decomposition_formulas",
+    "file": "GeneralizedGoldbach\\FourDecompositions.lean",
+    "statement": "theorem four_decomposition_formulas (N q A : ℕ) (hq : 0 < q)\n    (D : FourDecomposition N q A) :\n    (D.u : ℤ) = ((N : ℤ) - (A : ℤ)) / (q : ℤ) ^ 2 ∧\n    (D.v : ℤ) = ((N : ℤ) + (auxT q : ℤ) * (A : ℤ)) / (q : ℤ) ∧\n    (D.w : ℤ) = ((N : ℤ) - (auxT q : ℤ) ^ 2 * (A : ℤ)) / (q : ℤ)"
+  },
+  {
+    "name": "four_decomposition_prime_relations",
+    "file": "GeneralizedGoldbach\\FourDecompositions.lean",
+    "statement": "theorem four_decomposition_prime_relations (N q A : ℕ) (hq : Nat.Prime q)\n    (hodd : Odd q) (hqN : ¬ q ∣ N) (D : FourDecomposition N q A) :\n    g (q ^ 2 * D.u) = g (q * D.u) ∧ ¬ q ∣ D.v ∧ ¬ q ∣ D.w ∧\n      g (q * D.w) = -g D.w"
+  },
+  {
+    "name": "interval_chain_covers",
+    "file": "GeneralizedGoldbach\\IntervalChains.lean",
+    "statement": "theorem interval_chain_covers (q m : ℕ) (hq : 3 ≤ q) (hm : 0 < m)\n    (L U X : ℝ) (r s : ℤ) (C : IntervalChain q m L U r s)\n    (hLX : L ≤ X) (hXU : X ≤ U) :\n    HasSignedPoint m (X / (q : ℝ)) (X / (auxT q : ℝ)) r s"
+  },
+  {
+    "name": "exists_scaling_exponent",
+    "file": "GeneralizedGoldbach\\IntervalChains.lean",
+    "statement": "theorem exists_scaling_exponent (ell : ℕ) (hell : 1 < ell) (T X : ℝ)\n    (hT : 0 < T) (hX : T ≤ X) :\n    ∃ k : ℕ, T ≤ X / (ell : ℝ) ^ k ∧ X / (ell : ℝ) ^ k < (ell : ℝ) * T"
+  },
+  {
+    "name": "scaling_chain_extension",
+    "file": "GeneralizedGoldbach\\IntervalChains.lean",
+    "statement": "theorem scaling_chain_extension (q m ell : ℕ) (hq : 3 ≤ q) (hm : 0 < m)\n    (hell : Nat.Prime ell) (hcop : Nat.Coprime ell m) (T : ℝ) (hT : 0 < T)\n    (R : Finset ℕ) (hR : InverseClosed m ell R)\n    (hchains : ∀ r ∈ R, ∀ s : ℤ, IsSign s →\n      ∃ C : IntervalChain q m T ((ell : ℝ) * T) (r : ℤ) s,\n        ∀ i : ℕ, i ≤ C.last → ell ∣ C.point i) :\n    ∀ X : ℝ, T ≤ X → ∀ r ∈ R,\n      BothSignsInClass m (X / (q : ℝ)) (X / (auxT q : ℝ)) (r : ℤ)"
+  },
+  {
+    "name": "least_prime_cases",
+    "file": "GeneralizedGoldbach\\Main.lean",
+    "statement": "theorem least_prime_cases (N q : ℕ) (h : IsLeastMissingOddPrime N q) :\n    q ≤ 7 ∨ q ∈ auxiliaryPrimeSet ∨ 61 ≤ q"
+  },
+  {
+    "name": "four_patterns_main",
+    "file": "GeneralizedGoldbach\\Main.lean",
+    "statement": "theorem four_patterns_main : FourPatternsConjecture"
+  },
+  {
+    "name": "four_patterns_main_expanded",
+    "file": "GeneralizedGoldbach\\Main.lean",
+    "statement": "theorem four_patterns_main_expanded (N : ℕ) (hN : 100000 ≤ N)\n    (s t : ℤ) (hs : IsSign s) (ht : IsSign t) :\n    ∃ a b : ℕ, 0 < a ∧ 0 < b ∧ N = a + b ∧ g a = s ∧ g b = t"
+  },
+  {
+    "name": "representationCount_main",
+    "file": "GeneralizedGoldbach\\Main.lean",
+    "statement": "theorem representationCount_main (N : ℕ) (hN : 100000 ≤ N)\n    (s t : ℤ) (hs : IsSign s) (ht : IsSign t) :\n    0 < representationCount N s t"
+  },
+  {
+    "name": "generalized_goldbach",
+    "file": "GeneralizedGoldbach\\Main.lean",
+    "statement": "theorem generalized_goldbach : NegativeNegativeConjecture"
+  },
+  {
+    "name": "nagura_interval",
+    "file": "GeneralizedGoldbach\\PrimeTail.lean",
+    "statement": "theorem nagura_interval (x : ℝ) (hx : 25 < x) :\n    ∃ p : ℕ, Nat.Prime p ∧ x < (p : ℝ) ∧ (p : ℝ) < 6 * x / 5"
+  },
+  {
+    "name": "nagura_nat",
+    "file": "GeneralizedGoldbach\\PrimeTail.lean",
+    "statement": "theorem nagura_nat (n : ℕ) (hn : 25 < n) :\n    ∃ p : ℕ, Nat.Prime p ∧ n < p ∧ 5 * p < 6 * n"
+  },
+  {
+    "name": "exists_next_prime",
+    "file": "GeneralizedGoldbach\\PrimeTail.lean",
+    "statement": "theorem exists_next_prime (q : ℕ) (hq : Nat.Prime q) :\n    ∃ q' : ℕ, ConsecutivePrimes q q'"
+  },
+  {
+    "name": "odd_prime_product_next",
+    "file": "GeneralizedGoldbach\\PrimeTail.lean",
+    "statement": "theorem odd_prime_product_next (q q' : ℕ) (hq : 3 ≤ q)\n    (hnext : ConsecutivePrimes q q') : oddPrimeProduct q' = q * oddPrimeProduct q"
+  },
+  {
+    "name": "prime_tail_base_cases",
+    "file": "GeneralizedGoldbach\\PrimeTail.lean",
+    "statement": "theorem prime_tail_base_cases :\n    oddPrimeProduct 61 = 961380175077106319535 ∧\n    sufficientBound 61 7 = 514898337587558400000 ∧\n    oddPrimeProduct 67 = 58644190679703485491635 ∧\n    sufficientBound 67 5 = 1352644522537268505600 ∧\n    25 * oddPrimeProduct 71 = 1152 * 71 ^ 12 + 79325064871285123771842993"
+  },
+  {
+    "name": "prime_product_bound_step",
+    "file": "GeneralizedGoldbach\\PrimeTail.lean",
+    "statement": "theorem prime_product_bound_step (q q' : ℕ) (hq : 71 ≤ q)\n    (hnext : ConsecutivePrimes q q') (hgap : 5 * q' < 6 * q)\n    (hbound : 1152 * q ^ 12 < 25 * oddPrimeProduct q) :\n    1152 * q' ^ 12 < 25 * oddPrimeProduct q'"
+  },
+  {
+    "name": "prime_product_bound",
+    "file": "GeneralizedGoldbach\\PrimeTail.lean",
+    "statement": "theorem prime_product_bound (q : ℕ) (hq : Nat.Prime q) (hlarge : 71 ≤ q) :\n    1152 * q ^ 12 < 25 * oddPrimeProduct q"
+  },
+  {
+    "name": "sufficient_bound_lt_polynomial",
+    "file": "GeneralizedGoldbach\\PrimeTail.lean",
+    "statement": "theorem sufficient_bound_lt_polynomial (q p : ℕ) (hq : 71 ≤ q)\n    (hqp : q < p) (hgap : 5 * p < 6 * q) :\n    25 * sufficientBound q p < 1152 * q ^ 12"
+  },
+  {
+    "name": "four_patterns_of_large_least_prime",
+    "file": "GeneralizedGoldbach\\PrimeTail.lean",
+    "statement": "theorem four_patterns_of_large_least_prime (N q : ℕ)\n    (hleast : IsLeastMissingOddPrime N q) (hq : 61 ≤ q) : FourPatternsAt N"
+  },
+  {
+    "name": "odd_parameter_crt",
+    "file": "GeneralizedGoldbach\\Rigidity.lean",
+    "statement": "theorem odd_parameter_crt (N q : ℕ) (hH : AdmissibleAuxiliaryPrime N q) :\n    ∃ r : ℕ, r < oddModulus q ∧ auxD q ∣ r ∧ ¬ q ∣ r ∧\n      ∀ A : ℕ, (auxD q ∣ A ∧ Nat.ModEq (q ^ 2) A N) ↔\n        Nat.ModEq (oddModulus q) A r"
+  },
+  {
+    "name": "even_residue_properties",
+    "file": "GeneralizedGoldbach\\Rigidity.lean",
+    "statement": "theorem even_residue_properties (N q : ℕ) (hH : AdmissibleAuxiliaryPrime N q)\n    (hN : Even N) :\n    ∃ r : ℕ, r < evenModulus q ∧ auxD q ∣ r ∧ ¬ q ∣ r ∧\n      Int.ModEq (evenModulus q : ℤ) (r : ℤ) (evenResidue N q)"
+  },
+  {
+    "name": "even_parameter_quotient",
+    "file": "GeneralizedGoldbach\\Rigidity.lean",
+    "statement": "theorem even_parameter_quotient (N q v : ℕ) (hH : AdmissibleAuxiliaryPrime N q)\n    (hv : EvenRigidityParameter N q v) :\n    ∃ u : ℕ, 0 < u ∧ N = auxT q * q * u + v ∧\n      Nat.ModEq (auxD q) u (auxD q / 2)"
+  },
+  {
+    "name": "odd_sign_table",
+    "file": "GeneralizedGoldbach\\Rigidity.lean",
+    "statement": "theorem odd_sign_table (N q A : ℕ) (hH : AdmissibleAuxiliaryPrime N q)\n    (hodd : Odd N) (hA : OddRigidityParameter N q A) (D : FourDecomposition N q A) :\n    g (auxT q * q * D.u) = -g (q ^ 2 * D.u) ∧\n      g (auxT q * D.v) = -g D.v ∧ g (auxT q ^ 2 * A) = g A"
+  },
+  {
+    "name": "even_sign_table",
+    "file": "GeneralizedGoldbach\\Rigidity.lean",
+    "statement": "theorem even_sign_table (N q v : ℕ) (hH : AdmissibleAuxiliaryPrime N q)\n    (heven : Even N) (hv : EvenRigidityParameter N q v) :\n    ∃ A : ℕ, ∃ D : FourDecomposition N q A, D.v = v ∧\n      g (auxT q * q * D.u) = -g (q ^ 2 * D.u) ∧\n      g (auxT q * D.v) = g D.v ∧ g (auxT q ^ 2 * A) = -g A"
+  },
+  {
+    "name": "odd_missing_pattern_rigidity",
+    "file": "GeneralizedGoldbach\\Rigidity.lean",
+    "statement": "theorem odd_missing_pattern_rigidity (N q : ℕ) (hodd : Odd N)\n    (hH : AdmissibleAuxiliaryPrime N q) (eps : ℤ) (heps : IsSign eps)\n    (hmissing : MissingSameSign N eps) :\n    ∀ A : ℕ, OddRigidityParameter N q A → g A = -eps"
+  },
+  {
+    "name": "even_missing_pattern_rigidity",
+    "file": "GeneralizedGoldbach\\Rigidity.lean",
+    "statement": "theorem even_missing_pattern_rigidity (N q : ℕ) (heven : Even N)\n    (hH : AdmissibleAuxiliaryPrime N q) (eps : ℤ) (heps : IsSign eps)\n    (hmissing : MissingSameSign N eps) :\n    ∀ v : ℕ, EvenRigidityParameter N q v → g v = -eps"
+  },
+  {
+    "name": "mixed_patterns_of_odd_parameter",
+    "file": "GeneralizedGoldbach\\Rigidity.lean",
+    "statement": "theorem mixed_patterns_of_odd_parameter (N q A : ℕ) (hodd : Odd N)\n    (hH : AdmissibleAuxiliaryPrime N q) (hA : OddRigidityParameter N q A) :\n    HasRepresentation N 1 (-1) ∧ HasRepresentation N (-1) 1"
+  },
+  {
+    "name": "mixed_patterns_of_even_parameter",
+    "file": "GeneralizedGoldbach\\Rigidity.lean",
+    "statement": "theorem mixed_patterns_of_even_parameter (N q v : ℕ) (heven : Even N)\n    (hH : AdmissibleAuxiliaryPrime N q) (hv : EvenRigidityParameter N q v) :\n    HasRepresentation N 1 (-1) ∧ HasRepresentation N (-1) 1"
+  },
+  {
+    "name": "four_patterns_of_odd_parameters",
+    "file": "GeneralizedGoldbach\\Rigidity.lean",
+    "statement": "theorem four_patterns_of_odd_parameters (N q : ℕ) (hH : AdmissibleAuxiliaryPrime N q)\n    (hodd : Odd N) (hparams : ∀ s : ℤ, IsSign s →\n      ∃ A : ℕ, OddRigidityParameter N q A ∧ g A = s) : FourPatternsAt N"
+  },
+  {
+    "name": "four_patterns_of_even_parameters",
+    "file": "GeneralizedGoldbach\\Rigidity.lean",
+    "statement": "theorem four_patterns_of_even_parameters (N q : ℕ) (hH : AdmissibleAuxiliaryPrime N q)\n    (heven : Even N) (hparams : ∀ s : ℤ, IsSign s →\n      ∃ v : ℕ, EvenRigidityParameter N q v ∧ g v = s) : FourPatternsAt N"
+  },
+  {
+    "name": "q3_certificates",
+    "file": "GeneralizedGoldbach\\SmallPrimes.lean",
+    "statement": "theorem q3_certificates : SmallEvenCertificate 3 5 ∧ SmallOddCertificate 3 64"
+  },
+  {
+    "name": "q5_certificates",
+    "file": "GeneralizedGoldbach\\SmallPrimes.lean",
+    "statement": "theorem q5_certificates : SmallEvenCertificate 5 3 ∧ SmallOddCertificate 5 312"
+  },
+  {
+    "name": "q7_certificates",
+    "file": "GeneralizedGoldbach\\SmallPrimes.lean",
+    "statement": "theorem q7_certificates : Q7EvenCertificate ∧ Q7OddCertificate"
+  },
+  {
+    "name": "q7_exception_classification",
+    "file": "GeneralizedGoldbach\\SmallPrimes.lean",
+    "statement": "theorem q7_exception_classification (N : ℕ) (hlo : 100000 ≤ N) (hhi : N ≤ 104760)\n    (hodd : Odd N) (hdiv : 15 ∣ N) (hres : Nat.ModEq 49 N 19) :\n    N = 100665 ∨ N = 102135 ∨ N = 103605"
+  },
+  {
+    "name": "q7_exception_positive_positive",
+    "file": "GeneralizedGoldbach\\SmallPrimes.lean",
+    "statement": "theorem q7_exception_positive_positive :\n    HasRepresentation 100665 1 1 ∧ HasRepresentation 102135 1 1 ∧\n      HasRepresentation 103605 1 1"
+  },
+  {
+    "name": "four_patterns_of_q3",
+    "file": "GeneralizedGoldbach\\SmallPrimes.lean",
+    "statement": "theorem four_patterns_of_q3 (N : ℕ) (hN : mainThreshold ≤ N) (hnot : ¬ 3 ∣ N) :\n    FourPatternsAt N"
+  },
+  {
+    "name": "four_patterns_of_q5",
+    "file": "GeneralizedGoldbach\\SmallPrimes.lean",
+    "statement": "theorem four_patterns_of_q5 (N : ℕ) (hN : mainThreshold ≤ N) (hnot : ¬ 5 ∣ N) :\n    FourPatternsAt N"
+  },
+  {
+    "name": "four_patterns_of_q7",
+    "file": "GeneralizedGoldbach\\SmallPrimes.lean",
+    "statement": "theorem four_patterns_of_q7 (N : ℕ) (hN : mainThreshold ≤ N)\n    (hdiv : 15 ∣ N) (hnot : ¬ 7 ∣ N) : FourPatternsAt N"
+  },
+  {
+    "name": "four_patterns_of_small_least_prime",
+    "file": "GeneralizedGoldbach\\SmallPrimes.lean",
+    "statement": "theorem four_patterns_of_small_least_prime (N q : ℕ) (hN : mainThreshold ≤ N)\n    (hleast : IsLeastMissingOddPrime N q) (hq : q ≤ 7) : FourPatternsAt N"
+  },
+  {
+    "name": "representationCount_pos_iff",
+    "file": "GeneralizedGoldbach\\Statements.lean",
+    "statement": "theorem representationCount_pos_iff (N : ℕ) (s t : ℤ) :\n    0 < representationCount N s t ↔ HasRepresentation N s t"
+  },
+  {
+    "name": "representation_swap",
+    "file": "GeneralizedGoldbach\\Statements.lean",
+    "statement": "theorem representation_swap (N : ℕ) (s t : ℤ)\n    (h : HasRepresentation N s t) : HasRepresentation N t s"
+  },
+  {
+    "name": "odd_gap_of_sufficient_bound",
+    "file": "GeneralizedGoldbach\\SufficientBound.lean",
+    "statement": "theorem odd_gap_of_sufficient_bound (N q p : ℕ) (hH : AdmissibleAuxiliaryPrime N q)\n    (hp : Nat.Prime p) (hsize : sufficientBound q p < N) :\n    2 * (q : ℝ) ^ 2 * (p : ℝ) * Real.sqrt (2 * (oddModulus q : ℝ)) <\n      Real.sqrt ((N : ℝ) / (auxT q : ℝ) ^ 2)"
+  },
+  {
+    "name": "even_gap_of_sufficient_bound",
+    "file": "GeneralizedGoldbach\\SufficientBound.lean",
+    "statement": "theorem even_gap_of_sufficient_bound (N q p : ℕ) (hH : AdmissibleAuxiliaryPrime N q)\n    (hp : Nat.Prime p) (hsize : sufficientBound q p < N) :\n    2 * ((auxT q * q : ℕ) : ℝ) * (p : ℝ) * Real.sqrt (2 * (evenModulus q : ℝ)) <\n      Real.sqrt ((N : ℝ) / (auxT q : ℝ)) - Real.sqrt ((N : ℝ) / (q : ℝ))"
+  },
+  {
+    "name": "four_patterns_of_sufficient_bound",
+    "file": "GeneralizedGoldbach\\SufficientBound.lean",
+    "statement": "theorem four_patterns_of_sufficient_bound (N q p : ℕ)\n    (hH : AdmissibleAuxiliaryPrime N q) (hp : Nat.Prime p)\n    (havoid : ¬ p ∣ q * auxT q) (hsize : sufficientBound q p < N) :\n    FourPatternsAt N"
+  },
+  {
+    "name": "three_term_sign_identity",
+    "file": "GeneralizedGoldbach\\ThreePoint.lean",
+    "statement": "theorem three_term_sign_identity (c j k : ℕ) (hc : 0 < c) (hj : 0 < j)\n    (hk : 0 < k) (hcop : Nat.Coprime j k) :\n    g (c * j ^ 2) * g (c * j * k) * g (c * k ^ 2) = g c"
+  },
+  {
+    "name": "three_point_square_class",
+    "file": "GeneralizedGoldbach\\ThreePoint.lean",
+    "statement": "theorem three_point_square_class (m c h r : ℕ) (hm : 0 < m) (hc : 0 < c)\n    (L U : ℝ) (hL : 0 ≤ L) (hLU : L < U)\n    (hcop : Nat.Coprime h (m / Nat.gcd c m))\n    (hcong : Nat.ModEq m (c * h ^ 2) r)\n    (hgap : 2 * ((m / Nat.gcd c m : ℕ) : ℝ) * Real.sqrt (c : ℝ) <\n      Real.sqrt U - Real.sqrt L) :\n    HasSignedPoint m L U (r : ℤ) (g c)"
+  },
+  {
+    "name": "exists_small_representative_avoiding_prime",
+    "file": "GeneralizedGoldbach\\ThreePoint.lean",
+    "statement": "theorem exists_small_representative_avoiding_prime (m d p : ℕ) (r : ℤ)\n    (hm : 0 < m) (hd : 0 < d) (hdm : d ∣ m) (hdr : (d : ℤ) ∣ r)\n    (hp : Nat.Prime p) (hpm : ¬ p ∣ m) :\n    ∃ c : ℕ, 0 < c ∧ c < 2 * m ∧ d ∣ c ∧ ¬ p ∣ c ∧\n      Int.ModEq (m : ℤ) (c : ℤ) r"
+  },
+  {
+    "name": "two_signs_of_sqrt_gap",
+    "file": "GeneralizedGoldbach\\ThreePoint.lean",
+    "statement": "theorem two_signs_of_sqrt_gap (m d p : ℕ) (r : ℤ) (hm : 0 < m)\n    (hd : 0 < d) (hdm : d ∣ m) (hdr : (d : ℤ) ∣ r)\n    (hp : Nat.Prime p) (hpm : ¬ p ∣ m) (L U : ℝ) (hL : 0 ≤ L) (hLU : L < U)\n    (hgap : 2 * ((m / d : ℕ) : ℝ) * (p : ℝ) * Real.sqrt (2 * (m : ℝ)) <\n      Real.sqrt U - Real.sqrt L) :\n    BothSignsInClass m L U r"
+  }
+]

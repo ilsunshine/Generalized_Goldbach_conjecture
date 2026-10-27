@@ -1,0 +1,122 @@
+{
+  "origin": "independently rebuilt from the PDF; not original attachments",
+  "generator": "scripts/rebuild_certificates.py",
+  "sign_table_limit": 25842944,
+  "even_chain_points": 1770208,
+  "max_chain_coefficient": 25839274,
+  "odd_witnesses": 32492,
+  "finite_candidates": 149753,
+  "finite_witnesses": 449259,
+  "max_candidate": 3234846615,
+  "rows": [
+    {
+      "q": 11,
+      "d": 10,
+      "ell": 3,
+      "P": 105,
+      "T": 15488000,
+      "count": 133229
+    },
+    {
+      "q": 13,
+      "d": 6,
+      "ell": 5,
+      "P": 1155,
+      "T": 18690048,
+      "count": 14857
+    },
+    {
+      "q": 17,
+      "d": 2,
+      "ell": 3,
+      "P": 15015,
+      "T": 18939904,
+      "count": 1181
+    },
+    {
+      "q": 19,
+      "d": 6,
+      "ell": 5,
+      "P": 255255,
+      "T": 89828352,
+      "count": 333
+    },
+    {
+      "q": 23,
+      "d": 22,
+      "ell": 3,
+      "P": 4849845,
+      "T": 720997376,
+      "count": 142
+    },
+    {
+      "q": 29,
+      "d": 14,
+      "ell": 3,
+      "P": 111546435,
+      "T": 1181544448,
+      "count": 10
+    },
+    {
+      "q": 31,
+      "d": 30,
+      "ell": 7,
+      "P": 3234846615,
+      "T": 3321216000,
+      "count": 1
+    },
+    {
+      "q": 37,
+      "d": 6,
+      "ell": 5,
+      "P": 100280245065,
+      "T": 1362604032,
+      "count": 0
+    },
+    {
+      "q": 41,
+      "d": 10,
+      "ell": 3,
+      "P": 3710369067405,
+      "T": 3442688000,
+      "count": 0
+    },
+    {
+      "q": 43,
+      "d": 42,
+      "ell": 5,
+      "P": 152125131763605,
+      "T": 17534555136,
+      "count": 0
+    },
+    {
+      "q": 47,
+      "d": 46,
+      "ell": 3,
+      "P": 6541380665835015,
+      "T": 27521948672,
+      "count": 0
+    },
+    {
+      "q": 53,
+      "d": 26,
+      "ell": 3,
+      "P": 307444891294245705,
+      "T": 25277943808,
+      "count": 0
+    },
+    {
+      "q": 59,
+      "d": 58,
+      "ell": 3,
+      "P": 16294579238595022365,
+      "T": 86935663616,
+      "count": 0
+    }
+  ],
+  "sha256": {
+    "rebuilt_finite.csv": "bb0521f1aeca1858466259e5e67db82f3e236a199d1ee817a1dd4c02a9339ac4",
+    "rebuilt_small.json": "4cf5e43c35765b0300c6a1dce8ee2dcd30255617870694b46475a56d3f4c3390",
+    "rebuilt_uniform.json.gz": "11d625aca1fadb45ca47612efc59ee69c4cddd356dc0d0e7511b516eb68b0829"
+  }
+}

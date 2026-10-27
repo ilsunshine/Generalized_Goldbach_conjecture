@@ -1,0 +1,30 @@
+[
+  {
+    "name": "HexBasic",
+    "repository": "https://github.com/leanprover/hex-basic",
+    "revision": "f3ec4bd78149d07b4fd2372010563334f285b37e",
+    "directory": "third_party/hex-lean430/hex-basic",
+    "license": "Apache-2.0"
+  },
+  {
+    "name": "HexArith",
+    "repository": "https://github.com/leanprover/hex-arith",
+    "revision": "5ae42d0127e49eb3973ae01a5304a7adb2a9ee65",
+    "directory": "third_party/hex-lean430/hex-arith",
+    "license": "Apache-2.0"
+  },
+  {
+    "name": "HexPrimality",
+    "repository": "https://github.com/leanprover/hex-primality",
+    "revision": "e89daa43f1c6f2038a59674598e2a5097e64c3df",
+    "directory": "third_party/hex-lean430/hex-primality",
+    "license": "Apache-2.0"
+  },
+  {
+    "name": "HexPrimalityTheory",
+    "repository": "https://github.com/leanprover/hex-primality-theory",
+    "revision": "58440896420904eb53045a3b886058987ab49d68",
+    "directory": "third_party/hex-lean430/hex-primality-theory",
+    "license": "Apache-2.0"
+  }
+]
