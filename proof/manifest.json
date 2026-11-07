@@ -7,7 +7,7 @@
     "rebuilt_uniform.json.gz": "11d625aca1fadb45ca47612efc59ee69c4cddd356dc0d0e7511b516eb68b0829"
   },
   "sha256": {
-    "paper.pdf": "44ba14d4465c792b6168f23ebb8d43bbb950a0203e84333111706d3d81c90fd4",
+    "paper.pdf": "1a85d32e374b5fcc977b42676c8fb19b6fa1e5a20da33c2174048a4a3ff3a2c4",
     "data/finite_witnesses.csv": "bb0521f1aeca1858466259e5e67db82f3e236a199d1ee817a1dd4c02a9339ac4",
     "data/small_even_chains.csv": "e6bf33626ca5558eb065174e312f8028b43a8429a7118bbd60eaa4c6b7df2b3a",
     "data/small_odd_witnesses.csv": "b212abda0af198a3b34fbdec0b115735cb6b2564d8417fa778b6e69208432ef4",

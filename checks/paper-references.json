@@ -1,7 +1,7 @@
 {
   "schema_version": 2,
   "tex_sources": {
-    "latex/main.tex": "72b240220efd2de30d733d5f2836ec02dd6329af67ad327298c3b252e9eff0bf",
+    "latex/main.tex": "8a38b6470093dd446e9fc09ce68f049e48e44f2981c91bf30caa9d0ed2a3c3ec",
     "latex/sections/01-introduction.tex": "ba6b561a6b15cd29134422201171d2fe5ac04c191a6e84cf4dc46721d9ae38c4",
     "latex/sections/02-preliminaries.tex": "436365a68ff7612051c786c0acca0d3abfedd55a5a917f51deabf5e49ae31b00",
     "latex/sections/03-rigidity.tex": "c2a9460ae03179ed753050855970d0f6f90ddf247cdbdf19ae0e4279f925fb0d",
@@ -537,7 +537,7 @@
   },
   "paper": {
     "file": "proof/paper.pdf",
-    "sha256": "44ba14d4465c792b6168f23ebb8d43bbb950a0203e84333111706d3d81c90fd4"
+    "sha256": "1a85d32e374b5fcc977b42676c8fb19b6fa1e5a20da33c2174048a4a3ff3a2c4"
   },
   "declarations": [
     {
